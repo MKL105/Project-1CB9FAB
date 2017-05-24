@@ -11,9 +11,10 @@ public class GameController : MonoBehaviour
     private float pickupammotime;
     private int wave;
     private bool waveover;
-    private int enemiesinfield;
+    private bool spawn;
     public GameObject enemy;
     public GameObject player;
+    private GameObject[] enemies;
 
     private void Start()
     {
@@ -22,6 +23,8 @@ public class GameController : MonoBehaviour
         pickupammo = false;
         wave = 1;
         waveover = true;
+        spawn = true;
+        //this.wave1();
     }
 
     public void Update()
@@ -34,7 +37,9 @@ public class GameController : MonoBehaviour
         {
             bulletammo = false;
         }
-
+        //this.testwaveover();
+        //this.wavecontroll();
+        
     }
 
     public void looseammo()
@@ -56,9 +61,12 @@ public class GameController : MonoBehaviour
     //UNFERTIG
     public void wavecontroll()
     {
-        if (waveover == true)
+        if ((waveover == true) && (spawn == true))
         {
-            
+            if (wave == 1)
+            {
+                this.wave1();
+            }
         } 
     }
 
@@ -84,6 +92,21 @@ public class GameController : MonoBehaviour
     {
         GameObject newenemy = Instantiate(enemy) as GameObject;
         newenemy.transform.position = new Vector3(this.randompos(), this.randompos(), 0);
-        waveover = false;
+        GameObject newenemy1 = Instantiate(enemy) as GameObject;
+        newenemy1.transform.position = new Vector3(this.randompos(), this.randompos(), 0);
+    }
+
+    private void testwaveover()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (enemies == null)
+        {
+            waveover = true;
+            spawn = true;
+        }
+        else
+        {
+            waveover = false;
+        }
     }
 }
