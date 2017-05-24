@@ -33,5 +33,12 @@ public class BulletController : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        else
+        {
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

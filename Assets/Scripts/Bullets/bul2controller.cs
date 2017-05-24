@@ -34,5 +34,12 @@ public class bul2controller : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        else
+        {
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
