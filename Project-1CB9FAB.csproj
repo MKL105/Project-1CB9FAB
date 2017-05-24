@@ -92,7 +92,6 @@
     <Compile Include="Assets\Scripts\Cooldown Controll\TeleportCDcon.cs" />
     <Compile Include="Assets\Scripts\Cooldown Controll\attackCDcon.cs" />
     <Compile Include="Assets\Scripts\EnemieController.cs" />
-    <Compile Include="Assets\Scripts\EnemieHealth.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\Mana.cs" />
