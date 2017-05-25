@@ -87,10 +87,7 @@
     <Compile Include="Assets\Scripts\Bullets\bul6controller.cs" />
     <Compile Include="Assets\Scripts\Bullets\bul7controller.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Cooldown Controll\MultishotCDcon.cs" />
     <Compile Include="Assets\Scripts\Cooldown Controll\OverlayController.cs" />
-    <Compile Include="Assets\Scripts\Cooldown Controll\TeleportCDcon.cs" />
-    <Compile Include="Assets\Scripts\Cooldown Controll\attackCDcon.cs" />
     <Compile Include="Assets\Scripts\EnemieController.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
