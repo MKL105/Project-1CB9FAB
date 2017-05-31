@@ -11,6 +11,7 @@ public class EnemieController : MonoBehaviour {
     private float mV; //moveVertical Variable
     [HideInInspector] public float AktuelleLeben;
     [HideInInspector] public float MaxLeben;
+    //public GameObject ammodrop;
 
     private void Start()
     {
@@ -29,7 +30,8 @@ public class EnemieController : MonoBehaviour {
         rb.velocity = direction * speed; //sorgt für Bewegung des Enemy
     }
 
-    void DealDamage(float Schaden) // Reduziert verbleibende Leben
+    // Reduziert verbleibende Leben
+    void DealDamage(float Schaden)
     {
         AktuelleLeben -= Schaden;
         if (AktuelleLeben <= 0) // Überprüft ob Leben vorhanden ist
@@ -41,19 +43,41 @@ public class EnemieController : MonoBehaviour {
         return AktuelleLeben / MaxLeben;
     }
 
-    void Die() //Printet in der Console das kein Leben mehr vorhanden ist soll später den Enemy zerstören
+    //Printet in der Console das kein Leben mehr vorhanden ist soll später den Enemy zerstören
+    void Die()
     {
         AktuelleLeben = 0;
+        //if (this.dropammo(100.0f) == true)
+        //{
+        //    GameObject newammo = Instantiate(ammodrop) as GameObject;
+        //    newammo.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        //}
         Destroy(gameObject);
-        Debug.Log("Enemy Dead");
-
     }
 
-    void OnTriggerEnter2D(Collider2D collision) //Untersucht ob der Enemy eine Kugel berührt
+    //Untersucht ob der Enemy eine Kugel berührt
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet")) // falls ja
         {
             DealDamage(50f);// soll Schaden zugefügt werden 
+        }
+    }
+
+    //berechnet Dropchance fuer Munition
+    //gibt true zurück, wenn Munition gedroppt werden soll
+    private bool dropammo(float dropchance) //in % -> 50.0 = 50%ige Chance
+    {
+        float drc = dropchance;
+        float num = Random.Range(0.0f, 100.0f); //errechnet Zufallszahl zwischen 0 und 100
+
+        if (num < drc) //Munition wird fallengelassen
+        {
+            return true;
+        }
+        else //Munitionm wird nicht fallengelassen
+        {
+            return false;
         }
     }
 }

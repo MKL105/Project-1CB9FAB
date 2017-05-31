@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUpAmmoCon : MonoBehaviour {
 
-    private GameController gamecon;
+    public GameController gamecon;
     public GameObject area;
 
 	void Start ()

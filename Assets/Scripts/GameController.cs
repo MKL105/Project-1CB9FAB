@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
         wave = 1;
         waveover = true;
         spawn = true;
+        //this.spawnenemy();
         //this.wave1();
     }
 
@@ -88,6 +89,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    //FUNKTIONIERT NOCH NICHT
     public void wave1()
     {
         GameObject newenemy = Instantiate(enemy) as GameObject;
@@ -108,5 +110,11 @@ public class GameController : MonoBehaviour
         {
             waveover = false;
         }
+    }
+
+    private void spawnenemy()
+    {
+        GameObject newenem = Instantiate(enemy) as GameObject;
+        newenem.transform.position = new Vector3(-6.0f, 6.0f, 0.0f);
     }
 }
