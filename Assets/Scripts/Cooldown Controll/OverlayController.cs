@@ -31,6 +31,8 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     public GameObject area; //Arena
     private int ammo;
     public Text ammotext;
+    public Text wave;
+    public Text kills;
 
    
 
