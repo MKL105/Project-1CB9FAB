@@ -24,6 +24,9 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     private Vector3 offsetammo; //Abstandsvektor
     [HideInInspector] public Animator animammo; //Animator für die Animation der Munition
 
+    public GameObject overlay; //Overlay
+    private Vector3 offsetoverlay; //Abstandsvektor
+
     [HideInInspector] public GameController gamecon; //Gamecontroller Skript
     public GameObject area; //Arena
     private int ammo;
@@ -45,6 +48,8 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
 
         offsettp = tpcd.transform.position - player.transform.position;
         animtp = tpcd.GetComponent<Animator>();
+
+        offsetoverlay = overlay.transform.position - player.transform.position;
 
         offsetammo = ammobullet.transform.position - player.transform.position;
         animammo = ammobullet.GetComponent<Animator>();
@@ -68,6 +73,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         mscd.transform.position = player.transform.position + offsetms;
         tpcd.transform.position = player.transform.position + offsettp;
         ammobullet.transform.position = player.transform.position + offsetammo;
+        overlay.transform.position = player.transform.position + offsetoverlay;
     }
 
     //Steuert die Animator fuer die Cooldowns
