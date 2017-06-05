@@ -8,13 +8,16 @@ public class GameController : MonoBehaviour
     public bool bulletammo;
     [HideInInspector] public int ammo;
     [HideInInspector] public bool pickupammo;
-    private float pickupammotime;
-    private int wave;
-    private bool waveover;
-    private bool spawn;
-    public GameObject enemy;
+    public Transform enemy;
     public GameObject player;
-    //private GameObject[] enemies;
+    public GameObject spawnpoint1;
+    public GameObject spawnpoint2;
+    public GameObject spawnpoint3;
+    [HideInInspector] public int wave;
+    GameObject[] enemiesleft;
+    [HideInInspector] public int enemleft;
+    [HideInInspector] public int newenemies;
+
 
     private void Start()
     {
@@ -22,10 +25,10 @@ public class GameController : MonoBehaviour
         ammo = 100;
         pickupammo = false;
         wave = 1;
-        waveover = true;
-        spawn = true;
-        //this.spawnenemy();
-        //this.wave1();
+        newenemies = newenem();
+        enemiesleft = GameObject.FindGameObjectsWithTag("Enemy");
+        enemleft = enemiesleft.Length;
+        StartCoroutine(spawnwave());
     }
 
     public void Update()
@@ -38,9 +41,8 @@ public class GameController : MonoBehaviour
         {
             bulletammo = false;
         }
-        //this.testwaveover();
-        //this.wavecontroll();
-        
+        enemiesleft = GameObject.FindGameObjectsWithTag("Enemy");
+        enemleft = enemiesleft.Length;
     }
 
     public void looseammo()
@@ -57,25 +59,37 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //zustaendig fuer das spawnen der Gegnerwellen
-
-    //UNFERTIG
-    public void wavecontroll()
+    IEnumerator spawnwave()
     {
-        if ((waveover == true) && (spawn == true))
+        for (int i = 0; i < newenemies; i++)
         {
-            if (wave == 1)
+            int num = randomspawn();
+            switch (num)
             {
-                this.wave1();
+                case 1:
+                    Instantiate(enemy, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
+                    yield return new WaitForSeconds(0.7f);
+                    break;
+                case 2:
+                    Instantiate(enemy, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
+                    yield return new WaitForSeconds(0.7f);
+                    break;
+                case 3:
+                    Instantiate(enemy, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
+                    yield return new WaitForSeconds(0.7f);
+                    break;
             }
-        } 
+            
+        }
     }
 
+
     //berechnet zufaellige x oder y koordinate fuer Gegnerspawnposition
-    public float randompos()
+    //evtl nicht beoetigt wenn fester spawnpunkt
+    private float randompos()
     {
-        float randx1 = Random.Range(-8.0f, (player.transform.position.x - 0.5f)); //zufaellige x-Koordinate Links oder unten vom Player
-        float randx2 = Random.Range((player.transform.position.x + 0.5f), 8.0f); //zufaellige x-Koordinate rechts oder oben vom Player
+        float randx1 = Random.Range(-20.0f, (player.transform.position.x - 0.5f)); //zufaellige x-Koordinate Links oder unten vom Player
+        float randx2 = Random.Range((player.transform.position.x + 0.5f), 20.0f); //zufaellige x-Koordinate rechts oder oben vom Player
         
         int randud = Random.Range(1, 2); //Zufallszahl 1 oder 2 -> zum auswaehlen ob randx1 oder randx2
 
@@ -89,32 +103,16 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //FUNKTIONIERT NOCH NICHT
-    public void wave1()
+    private int randomspawn()
     {
-        GameObject newenemy = Instantiate(enemy) as GameObject;
-        newenemy.transform.position = new Vector3(this.randompos(), this.randompos(), 0);
-        GameObject newenemy1 = Instantiate(enemy) as GameObject;
-        newenemy1.transform.position = new Vector3(this.randompos(), this.randompos(), 0);
+        int spawn = Random.Range(1, 4);
+        return spawn;
     }
 
-    //private void testwaveover()
-    //{
-    //    enemies = GameObject.FindGameObjectsWithTag("Enemy");
-    //    if (enemies == null)
-    //    {
-    //        waveover = true;
-    //        spawn = true;
-    //    }
-    //    else
-    //    {
-    //        waveover = false;
-    //    }
-   // }
-
-    private void spawnenemy()
+    private int newenem()
     {
-        GameObject newenem = Instantiate(enemy) as GameObject;
-        newenem.transform.position = new Vector3(-6.0f, 6.0f, 0.0f);
+        int c = wave * (wave + 5) / 2;
+        return c;
     }
+
 }

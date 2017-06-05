@@ -18,14 +18,6 @@ public class Health : MonoBehaviour {
         Healthbar.value = Lebenerrechnen(); //Errechnet wert der Healthbar
     }
 
-    private void Update()
-    {
-        if (beruehrt)//Wenn eine Berührung vorliegt erleidet der Spieler Schaden
-        {
-            DealDamage(30f);
-        }
-    }
-
     void DealDamage(float Schaden) // Reduziert verbleibende Leben
     {
         AktuelleLeben -= Schaden;
@@ -41,9 +33,8 @@ public class Health : MonoBehaviour {
 
     void Die() //Printet in der Console das kein Leben mehr vorhanden ist soll später den Spieler zerstören und das Spiel beenden
     {
+        Debug.Log("Game Over");
         AktuelleLeben = 0;
-        Debug.Log("Get Rekt");
-        //Lebendig = false;
     }
 
 
@@ -53,27 +44,7 @@ public class Health : MonoBehaviour {
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            //beruehrt = true;// setzt bei berührung beruehrt auf true
-            // wait();
-            //beruehrt = false;
             DealDamage(30f);
-            //StartCoroutine(wait());
-            //DealDamage(30f);
-
         }
     }
-
-    //IEnumerator wait()
-    //{
-        //yield return new WaitForSeconds(10f);
-   // }
-
-
-    // private void OnTriggerExit(Collider other) // Versuch zu verhindern das der Spieler Schaden bekommt nachdem er den Gegner nicht mehr berührt
-    //  {
-    //   if (other.gameObject.CompareTag("Enemy"))
-    // {
-    // beruehrt = false;
-    // }
-    // }
 }

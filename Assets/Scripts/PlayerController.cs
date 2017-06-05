@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private bool ammo;
     public GameObject manabar;
     public Mana manacon;
+    [HideInInspector] public float damage;
 
     //wird beim Initialisieren aufgerufen
     private void Start()
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
         tp = true;
         ammo = true;
         manacon = manabar.GetComponent<Mana>();
+        damage = 1.0f;
     }
 
     //wird vor jedem Frame aufgerufen

@@ -5,19 +5,22 @@ using UnityEngine;
 public class EnemieController : MonoBehaviour {
 
     public GameObject player;
+    public PlayerController playcon;
     private float speed;
     public Rigidbody2D rb;
     private float mH; //moveHorizontal Variable
     private float mV; //moveVertical Variable
-    [HideInInspector] public float AktuelleLeben;
+    public float AktuelleLeben;
     [HideInInspector] public float MaxLeben;
     public GameObject ammodrop;
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playcon = player.GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
         speed = 2;
-        MaxLeben = 50f;
+        MaxLeben = 3.0f;
         AktuelleLeben = MaxLeben;
     }
 
@@ -28,33 +31,31 @@ public class EnemieController : MonoBehaviour {
         Vector2 direction = playerpos - mypos; //berechnet Richtungsvektor
         direction.Normalize(); //gibt Vektor die Länge 1
         rb.velocity = direction * speed; //sorgt für Bewegung des Enemy
+
+        if (AktuelleLeben <= 0)// Überprüft ob Leben vorhanden ist
+        { 
+            Die(); // falls nein wird Die() ausgeführt
+        }
     }
 
     // Reduziert verbleibende Leben
     void DealDamage(float Schaden)
     {
-        AktuelleLeben -= Schaden;
-        if (AktuelleLeben <= 0) // Überprüft ob Leben vorhanden ist
-            Die(); // falls nein wird Die() ausgeführt
+        AktuelleLeben -= Schaden/2; //wird durch 2 geteilt da der Enemy doppelt so viel schaden bekommt wie er sollte
     }
-
-    float Lebenerrechnen()
-    {
-        return AktuelleLeben / MaxLeben;
-    }
-
-    //Printet in der Console das kein Leben mehr vorhanden ist soll später den Enemy zerstören
-
-    //FEHLER: ES WERDEN MUNITIONSPAKETE GESPAWNT 
+ 
     void Die()
     {
-        //if (this.dropammo(100.0f) == true)
-        //{
+        if (this.dropammo(10.0f) == true)
+        {
             GameObject newammo = Instantiate(ammodrop) as GameObject;
             newammo.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        //}
-        AktuelleLeben = 0;
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     //Untersucht ob der Enemy eine Kugel berührt
@@ -62,7 +63,7 @@ public class EnemieController : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Bullet")) // falls ja
         {
-            DealDamage(50f);// soll Schaden zugefügt werden 
+            DealDamage(playcon.damage);// soll Schaden zugefügt werden 
         }
     }
 
