@@ -11,7 +11,7 @@ public class EnemieController : MonoBehaviour {
     private float mV; //moveVertical Variable
     [HideInInspector] public float AktuelleLeben;
     [HideInInspector] public float MaxLeben;
-    //public GameObject ammodrop;
+    public GameObject ammodrop;
 
     private void Start()
     {
@@ -44,14 +44,16 @@ public class EnemieController : MonoBehaviour {
     }
 
     //Printet in der Console das kein Leben mehr vorhanden ist soll später den Enemy zerstören
+
+    //FEHLER: ES WERDEN MUNITIONSPAKETE GESPAWNT 
     void Die()
     {
-        AktuelleLeben = 0;
         //if (this.dropammo(100.0f) == true)
         //{
-        //    GameObject newammo = Instantiate(ammodrop) as GameObject;
-        //    newammo.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            GameObject newammo = Instantiate(ammodrop) as GameObject;
+            newammo.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         //}
+        AktuelleLeben = 0;
         Destroy(gameObject);
     }
 
@@ -75,7 +77,7 @@ public class EnemieController : MonoBehaviour {
         {
             return true;
         }
-        else //Munitionm wird nicht fallengelassen
+        else //Munition wird nicht fallengelassen
         {
             return false;
         }

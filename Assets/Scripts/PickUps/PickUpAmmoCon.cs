@@ -9,6 +9,7 @@ public class PickUpAmmoCon : MonoBehaviour {
 
 	void Start ()
     {
+        area = GameObject.FindGameObjectWithTag("Wall");
         gamecon = area.GetComponent<GameController>();
 	}
 
@@ -16,7 +17,7 @@ public class PickUpAmmoCon : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gamecon.ammo = gamecon.ammo + 50;
+            gamecon.ammo += 50;
             Destroy(gameObject);
         }
     }

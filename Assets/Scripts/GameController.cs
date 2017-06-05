@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     private bool spawn;
     public GameObject enemy;
     public GameObject player;
-    private GameObject[] enemies;
+    //private GameObject[] enemies;
 
     private void Start()
     {
@@ -98,19 +98,19 @@ public class GameController : MonoBehaviour
         newenemy1.transform.position = new Vector3(this.randompos(), this.randompos(), 0);
     }
 
-    private void testwaveover()
-    {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies == null)
-        {
-            waveover = true;
-            spawn = true;
-        }
-        else
-        {
-            waveover = false;
-        }
-    }
+    //private void testwaveover()
+    //{
+    //    enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    //    if (enemies == null)
+    //    {
+    //        waveover = true;
+    //        spawn = true;
+    //    }
+    //    else
+    //    {
+    //        waveover = false;
+    //    }
+   // }
 
     private void spawnenemy()
     {
