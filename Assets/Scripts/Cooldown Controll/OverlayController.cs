@@ -31,8 +31,10 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     public GameObject area; //Arena
     private int ammo;
     public Text ammotext;
-    public Text wave;
-    public Text kills;
+    private int wave;
+    public Text wavetext;
+    private int enemleft;
+    public Text enemlefttext;
 
    
 
@@ -57,7 +59,10 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         animammo = ammobullet.GetComponent<Animator>();
 
         ammo = gamecon.ammo;
-        this.setammotext();
+        wave = gamecon.wave;
+        enemleft = gamecon.enemleft;
+
+        this.settexts();
     }
 
     //wird vor jedem Frame aufgerufen
@@ -65,7 +70,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     {
         this.setcooldowns();
         this.setammo();
-        this.setammotext();
+        this.settexts();
     }
 
     //sorgt dafuer dass sich sich die Symbole mit dem Spieler mitbewegen
@@ -146,19 +151,23 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         if(gamecon.bulletammo == true)
         {
             animammo.SetBool("ammo", true);
-            this.setammotext();
+            this.settexts();
         }
         else
         {
             animammo.SetBool("ammo", false);
-            this.setammotext();
+            this.settexts();
         }
     }
 
-    //Setzt den Minutionscount
-    private void setammotext()
+    //Setzt den Minutionscount und Wavecount
+    private void settexts()
     {
         ammo = gamecon.ammo;
         ammotext.text = ammo.ToString() + "x";
+        wave = gamecon.wave;
+        wavetext.text = "Wave: " + wave.ToString();
+        enemleft = gamecon.enemleft;
+        enemlefttext.text = "Enemies left: " + enemleft.ToString();
     }
 }

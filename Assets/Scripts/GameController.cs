@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     GameObject[] enemiesleft;
     [HideInInspector] public int enemleft;
     [HideInInspector] public int newenemies;
+    [HideInInspector] private bool waveover;
 
 
     private void Start()
@@ -26,9 +27,8 @@ public class GameController : MonoBehaviour
         pickupammo = false;
         wave = 1;
         newenemies = newenem();
-        enemiesleft = GameObject.FindGameObjectsWithTag("Enemy");
-        enemleft = enemiesleft.Length;
-        StartCoroutine(spawnwave());
+        waveover = true;
+        spawning();
     }
 
     public void Update()
@@ -43,6 +43,18 @@ public class GameController : MonoBehaviour
         }
         enemiesleft = GameObject.FindGameObjectsWithTag("Enemy");
         enemleft = enemiesleft.Length;
+        if(enemleft == 0)
+        {
+            waveover = true;
+            Debug.Log("Wave over");
+            spawning();
+            waveover = false;
+            wave++;
+        }
+        else
+        {
+            waveover = false;
+        }
     }
 
     public void looseammo()
@@ -61,6 +73,8 @@ public class GameController : MonoBehaviour
 
     IEnumerator spawnwave()
     {
+        Debug.Log("Next wave incoming");
+        //yield return new WaitForSeconds(5.0f);
         for (int i = 0; i < newenemies; i++)
         {
             int num = randomspawn();
@@ -80,6 +94,18 @@ public class GameController : MonoBehaviour
                     break;
             }
             
+        }
+        newenemies = newenem();
+    }
+
+    private void spawning()
+    {
+        enemiesleft = GameObject.FindGameObjectsWithTag("Enemy");
+        enemleft = enemiesleft.Length;
+
+        if ((enemleft == 0) && (waveover == true))
+        {
+            StartCoroutine(spawnwave());
         }
     }
 

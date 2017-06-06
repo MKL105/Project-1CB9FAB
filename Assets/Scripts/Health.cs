@@ -6,15 +6,12 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour {
     public float AktuelleLeben;
     public float MaxLeben;
-    private bool beruehrt = false; // variable welche angibt ob man einen Gegner berührt
     public Slider Healthbar; // Ist für Optische Anzeige zuständig
-    //private bool Lebendig = true;
 
     private void Start() // setzt zum Beginn die Aktuellen Leben auf Max
     {
         MaxLeben = 100f;
         AktuelleLeben = MaxLeben;
-
         Healthbar.value = Lebenerrechnen(); //Errechnet wert der Healthbar
     }
 
