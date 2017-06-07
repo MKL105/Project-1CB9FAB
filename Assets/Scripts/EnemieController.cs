@@ -6,6 +6,8 @@ public class EnemieController : MonoBehaviour {
 
     public GameObject player;
     public PlayerController playcon;
+    public GameObject area;
+    public GameController gamecon;
     private float speed;
     public Rigidbody2D rb;
     private float mH; //moveHorizontal Variable
@@ -13,14 +15,18 @@ public class EnemieController : MonoBehaviour {
     public float AktuelleLeben;
     [HideInInspector] public float MaxLeben;
     public GameObject ammodrop;
+    private int value; //wie viel Geld der gegner beim tod gibt
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playcon = player.GetComponent<PlayerController>();
+        area = GameObject.FindGameObjectWithTag("Wall");
+        gamecon = area.GetComponent<GameController>();
         rb = GetComponent<Rigidbody2D>();
         speed = 2;
-        MaxLeben = 3.0f;
+        value = gamecon.wave;
+        MaxLeben = gamecon.wave;
         AktuelleLeben = MaxLeben;
     }
 
@@ -50,10 +56,12 @@ public class EnemieController : MonoBehaviour {
         {
             GameObject newammo = Instantiate(ammodrop) as GameObject;
             newammo.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            gamecon.money += value;
             Destroy(gameObject);
         }
         else
         {
+            gamecon.money += value;
             Destroy(gameObject);
         }
     }

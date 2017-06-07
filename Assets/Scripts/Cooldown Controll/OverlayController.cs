@@ -27,6 +27,9 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     public GameObject overlay; //Overlay
     private Vector3 offsetoverlay; //Abstandsvektor
 
+    public GameObject coin;
+    private Vector3 offsetcoin;
+
     [HideInInspector] public GameController gamecon; //Gamecontroller Skript
     public GameObject area; //Arena
     private int ammo;
@@ -35,6 +38,8 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     public Text wavetext;
     private int enemleft;
     public Text enemlefttext;
+    private int money;
+    public Text moneytext;
 
    
 
@@ -58,9 +63,12 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         offsetammo = ammobullet.transform.position - player.transform.position;
         animammo = ammobullet.GetComponent<Animator>();
 
+        offsetcoin = coin.transform.position - player.transform.position;
+
         ammo = gamecon.ammo;
         wave = gamecon.wave;
         enemleft = gamecon.enemleft;
+        money = gamecon.money;
 
         this.settexts();
     }
@@ -81,6 +89,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         tpcd.transform.position = player.transform.position + offsettp;
         ammobullet.transform.position = player.transform.position + offsetammo;
         overlay.transform.position = player.transform.position + offsetoverlay;
+        coin.transform.position = player.transform.position + offsetcoin;
     }
 
     //Steuert die Animator fuer die Cooldowns
@@ -169,5 +178,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         wavetext.text = "Wave: " + wave.ToString();
         enemleft = gamecon.enemleft;
         enemlefttext.text = "Enemies left: " + enemleft.ToString();
+        money = gamecon.money;
+        moneytext.text = money.ToString();
     }
 }

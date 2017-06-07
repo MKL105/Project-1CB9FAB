@@ -17,7 +17,8 @@ public class GameController : MonoBehaviour
     GameObject[] enemiesleft;
     [HideInInspector] public int enemleft;
     [HideInInspector] public int newenemies;
-    [HideInInspector] private bool waveover;
+    private bool waveover;
+    [HideInInspector] public int money;
 
 
     private void Start()
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
         ammo = 100;
         pickupammo = false;
         wave = 1;
+        money = 0;
         newenemies = newenem();
         waveover = true;
         spawning();
@@ -47,9 +49,9 @@ public class GameController : MonoBehaviour
         {
             waveover = true;
             Debug.Log("Wave over");
+            wave++;
             spawning();
             waveover = false;
-            wave++;
         }
         else
         {
@@ -74,6 +76,7 @@ public class GameController : MonoBehaviour
     IEnumerator spawnwave()
     {
         Debug.Log("Next wave incoming");
+        newenemies = newenem();
         //yield return new WaitForSeconds(5.0f);
         for (int i = 0; i < newenemies; i++)
         {
@@ -81,21 +84,20 @@ public class GameController : MonoBehaviour
             switch (num)
             {
                 case 1:
-                    Instantiate(enemy, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
-                    yield return new WaitForSeconds(0.7f);
-                    break;
+                        Instantiate(enemy, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
+                        yield return new WaitForSeconds(1.5f);
+                        break;
                 case 2:
-                    Instantiate(enemy, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
-                    yield return new WaitForSeconds(0.7f);
-                    break;
+                        Instantiate(enemy, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
+                        yield return new WaitForSeconds(1.5f);
+                        break;
                 case 3:
-                    Instantiate(enemy, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
-                    yield return new WaitForSeconds(0.7f);
-                    break;
+                        Instantiate(enemy, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
+                        yield return new WaitForSeconds(1.5f);
+                        break;
             }
             
         }
-        newenemies = newenem();
     }
 
     private void spawning()
