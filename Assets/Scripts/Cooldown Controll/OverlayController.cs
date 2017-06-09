@@ -46,6 +46,10 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     public Text damagetext;
     private int damagecost;
     public Text damagecosttext;
+    private int mscost;
+    public Text msunlock;
+    private int tpcost;
+    public Text tpunlock;
 
    
 
@@ -72,11 +76,14 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         offsetcoin = coin.transform.position - player.transform.position;
 
         ammo = gamecon.ammo;
+        ammocost = gamecon.ammocost;
         wave = gamecon.wave;
         enemleft = gamecon.enemleft;
         money = gamecon.money;
         damage = gamecon.damage;
         damagecost = gamecon.damagecost;
+        mscost = gamecon.mscost;
+        tpcost = gamecon.tpcost;
 
         this.settexts();
     }
@@ -106,10 +113,10 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         if (playcon.attack == true)
         {
             animatk.SetBool("atk", true); //Aktiviert Skill-Animation
-            if (playcon.multishot == true)
+            if ((playcon.multishot == true) && (playcon.msunlock == true))
             {
                 animms.SetBool("Active", true); //Aktiviert Skill-Animation
-                if (playcon.tp == true)
+                if ((playcon.tp == true) && (playcon.tpunlock == true))
                 {
                     animtp.SetBool("tpakt", true); //Aktiviert Skill-Animation
                 }
@@ -121,7 +128,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
             else
             {
                 animms.SetBool("Active", false); //deaktiviert Skill-Animation
-                if (playcon.tp == true)
+                if ((playcon.tp == true) && (playcon.tpunlock == true))
                 {
                     animtp.SetBool("tpakt", true); //Aktiviert Skill-Animation
                 }
@@ -134,10 +141,10 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         else
         {
             animatk.SetBool("atk", false); //deaktiviert Skill-Animation
-            if (playcon.multishot == true)
+            if ((playcon.multishot == true) && (playcon.msunlock == true))
             {
                 animms.SetBool("Active", true); //Aktiviert Skill-Animation
-                if (playcon.tp == true)
+                if ((playcon.tp == true) && (playcon.tpunlock == true))
                 {
                     animtp.SetBool("tpakt", true); //Aktiviert Skill-Animation
                 }
@@ -149,7 +156,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
             else
             {
                 animms.SetBool("Active", false); //deaktiviert Skill-Animation
-                if (playcon.tp == true)
+                if ((playcon.tp == true) && (playcon.tpunlock == true))
                 {
                     animtp.SetBool("tpakt", true); //Aktiviert Skill-Animation
                 }
@@ -192,6 +199,25 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         damagetext.text = "Damage: " + damage.ToString();
         damagecost = gamecon.damagecost;
         damagecosttext.text = "Cost: " + damagecost.ToString();
+        ammocost = gamecon.ammocost;
         ammocosttext.text = "Cost: " + ammocost.ToString();
+        if (playcon.msunlock == true)
+        {
+            msunlock.text = "Unlocked";
+        }
+        else
+        {
+            mscost = gamecon.mscost;
+            msunlock.text = "Cost: " + mscost.ToString();
+        }
+        if (playcon.tpunlock == true)
+        {
+            tpunlock.text = "Unlocked";
+        }
+        else
+        {
+            tpcost = gamecon.tpcost;
+            tpunlock.text = "Cost: " + tpcost.ToString();
+        }
     }
 }

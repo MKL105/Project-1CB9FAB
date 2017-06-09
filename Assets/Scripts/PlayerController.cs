@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float nextfirems; //Zeit, wenn der Multishot wieder aufgeladen ist
     [HideInInspector] public float nextfireatk; //Zeit, wenn die Attacke wieder aufgeladen ist
     [HideInInspector] public float nextfiretp; //Zeit, wenn der Teleport wieder aufgeladen ist
+    [HideInInspector] public bool msunlock;
+    [HideInInspector] public bool tpunlock;
     [HideInInspector] public bool multishot; //true wenn Multishot aufgeladen ist
     [HideInInspector] public bool attack; //true wenn Attacke aufgeladen ist
     [HideInInspector] public bool tp; //true wenn Teleport aufgeladen ist
@@ -44,10 +46,12 @@ public class PlayerController : MonoBehaviour
         cdmultishot = 5.0f;
         cdattack = 0.1f;
         cdteleport = 60.0f;
-        multishot = true;
+        multishot = false;
         attack = true;
-        tp = true;
+        tp = false;
         ammo = true;
+        msunlock = false;
+        tpunlock = false;
         manacon = manabar.GetComponent<Mana>();
         damage = 1.0f;
     }
@@ -235,7 +239,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 playerpos = rb.position; //gibt eigene Position als Vektor aus
 
-        if ((Input.GetMouseButtonDown(1)) && (Time.time > nextfirems) && (manacon.AktuelleMana >= 10)) //rechte Maustaste gedrückt + Skill aktiv
+        if ((Input.GetMouseButtonDown(1)) && (Time.time > nextfirems) && (manacon.AktuelleMana >= 10) && (msunlock == true)) //rechte Maustaste gedrückt + Skill aktiv
         {
             nextfirems = Time.time + cdmultishot;
             GameObject newbullet = Instantiate(bullet) as GameObject;
@@ -313,11 +317,13 @@ public class PlayerController : MonoBehaviour
         float toy = transform.position.y + direction.y;
         float toz = transform.position.z;
 
-        if ((Input.GetKeyDown(KeyCode.E)) && (Time.time > nextfiretp) && (manacon.AktuelleMana >= 25))
+        if ((Input.GetKeyDown(KeyCode.E)) && (Time.time > nextfiretp) && (manacon.AktuelleMana >= 25) && (tpunlock == true))
         {
             nextfiretp = Time.time + cdteleport;
             rb.transform.position = new Vector3(tox, toy, toz);
             manacon.DealManaDamage(25);
         }
     }
+
+    
 }

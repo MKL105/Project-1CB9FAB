@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int money;
     [HideInInspector] public float damage;
     [HideInInspector] public int damagecost;
+    [HideInInspector] public int mscost;
+    [HideInInspector] public int tpcost;
 
 
     private void Start()
@@ -31,6 +33,8 @@ public class GameController : MonoBehaviour
         bulletammo = true;
         ammo = 100;
         pickupammo = false;
+        mscost = 150;
+        tpcost = 500;
         wave = 1;
         money = 0;
         damage = 1;
@@ -166,6 +170,24 @@ public class GameController : MonoBehaviour
         {
             this.ammo += 25;
             money -= ammocost;
+        }
+    }
+
+    public void unlockmultishot()
+    {
+        if(money >= mscost)
+        {
+            playcon.msunlock = true;
+            money -= mscost;
+        }
+    }
+
+    public void unlockteleport()
+    {
+        if (money >= tpcost)
+        {
+            playcon.tpunlock = true;
+            money -= tpcost;
         }
     }
 
