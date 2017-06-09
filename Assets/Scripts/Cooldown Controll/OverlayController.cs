@@ -34,12 +34,18 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     public GameObject area; //Arena
     private int ammo;
     public Text ammotext;
+    private int ammocost;
+    public Text ammocosttext;
     private int wave;
     public Text wavetext;
     private int enemleft;
     public Text enemlefttext;
     private int money;
     public Text moneytext;
+    private float damage;
+    public Text damagetext;
+    private int damagecost;
+    public Text damagecosttext;
 
    
 
@@ -69,6 +75,8 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         wave = gamecon.wave;
         enemleft = gamecon.enemleft;
         money = gamecon.money;
+        damage = gamecon.damage;
+        damagecost = gamecon.damagecost;
 
         this.settexts();
     }
@@ -180,5 +188,10 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         enemlefttext.text = "Enemies left: " + enemleft.ToString();
         money = gamecon.money;
         moneytext.text = money.ToString();
+        damage = gamecon.damage;
+        damagetext.text = "Damage: " + damage.ToString();
+        damagecost = gamecon.damagecost;
+        damagecosttext.text = "Cost: " + damagecost.ToString();
+        ammocosttext.text = "Cost: " + ammocost.ToString();
     }
 }

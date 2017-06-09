@@ -39,6 +39,5 @@ public class Mana : MonoBehaviour
     void NoSpell() //Printet in der Console das kein Mana mehr vorhanden ist soll später das wirken von Spells verhindern
     {
         AktuelleMana = 0;
-        Debug.Log("No Mana left");
     }
 }

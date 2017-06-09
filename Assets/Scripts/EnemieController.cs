@@ -52,7 +52,7 @@ public class EnemieController : MonoBehaviour {
  
     void Die()
     {
-        if (this.dropammo(10.0f) == true)
+        if (this.dropammo(5.0f) == true)
         {
             GameObject newammo = Instantiate(ammodrop) as GameObject;
             newammo.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);

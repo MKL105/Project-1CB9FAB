@@ -7,9 +7,11 @@ public class GameController : MonoBehaviour
 
     public bool bulletammo;
     [HideInInspector] public int ammo;
+    [HideInInspector] public int ammocost;
     [HideInInspector] public bool pickupammo;
     public Transform enemy;
     public GameObject player;
+    public PlayerController playcon;
     public GameObject spawnpoint1;
     public GameObject spawnpoint2;
     public GameObject spawnpoint3;
@@ -19,15 +21,21 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int newenemies;
     private bool waveover;
     [HideInInspector] public int money;
+    [HideInInspector] public float damage;
+    [HideInInspector] public int damagecost;
 
 
     private void Start()
     {
+        playcon = player.GetComponent<PlayerController>();
         bulletammo = true;
         ammo = 100;
         pickupammo = false;
         wave = 1;
         money = 0;
+        damage = 1;
+        damagecost = 25;
+        ammocost = 25;
         newenemies = newenem();
         waveover = true;
         spawning();
@@ -35,6 +43,7 @@ public class GameController : MonoBehaviour
 
     public void Update()
     {
+        damage = playcon.damage;
         if(ammo > 0)
         {
             bulletammo = true;
@@ -75,9 +84,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator spawnwave()
     {
-        Debug.Log("Next wave incoming");
         newenemies = newenem();
-        //yield return new WaitForSeconds(5.0f);
         for (int i = 0; i < newenemies; i++)
         {
             int num = randomspawn();
@@ -141,6 +148,25 @@ public class GameController : MonoBehaviour
     {
         int c = wave * (wave + 5) / 2;
         return c;
+    }
+
+    public void damageup()
+    {
+        if (money >= damagecost)
+        {
+            playcon.damage++;
+            money -= damagecost;
+            damagecost = damagecost*2;
+        }
+    }
+
+    public void ammoup()
+    {
+        if (money >= ammocost)
+        {
+            this.ammo += 25;
+            money -= ammocost;
+        }
     }
 
 }

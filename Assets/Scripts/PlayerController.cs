@@ -235,7 +235,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 playerpos = rb.position; //gibt eigene Position als Vektor aus
 
-        if ((Input.GetMouseButtonDown(1)) && (Time.time > nextfirems)) //rechte Maustaste gedrückt + Skill aktiv
+        if ((Input.GetMouseButtonDown(1)) && (Time.time > nextfirems) && (manacon.AktuelleMana >= 10)) //rechte Maustaste gedrückt + Skill aktiv
         {
             nextfirems = Time.time + cdmultishot;
             GameObject newbullet = Instantiate(bullet) as GameObject;
@@ -313,7 +313,7 @@ public class PlayerController : MonoBehaviour
         float toy = transform.position.y + direction.y;
         float toz = transform.position.z;
 
-        if ((Input.GetKeyDown(KeyCode.E)) && (Time.time > nextfiretp))
+        if ((Input.GetKeyDown(KeyCode.E)) && (Time.time > nextfiretp) && (manacon.AktuelleMana >= 25))
         {
             nextfiretp = Time.time + cdteleport;
             rb.transform.position = new Vector3(tox, toy, toz);
