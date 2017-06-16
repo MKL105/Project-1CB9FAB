@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
-    public float AktuelleLeben;
-    public float MaxLeben;
+    public int AktuelleLeben;
+    public int MaxLeben;
     public Slider Healthbar; // Ist für Optische Anzeige zuständig
 
     private void Start() // setzt zum Beginn die Aktuellen Leben auf Max
     {
-        MaxLeben = 100f;
+        MaxLeben = 100;
         AktuelleLeben = MaxLeben;
         Healthbar.value = Lebenerrechnen(); //Errechnet wert der Healthbar
     }
 
-    void DealDamage(float Schaden) // Reduziert verbleibende Leben
+    void DealDamage(int Schaden) // Reduziert verbleibende Leben
     {
         AktuelleLeben -= Schaden;
         Healthbar.value = Lebenerrechnen();
@@ -41,7 +41,7 @@ public class Health : MonoBehaviour {
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            DealDamage(30f);
+            DealDamage(30);
         }
     }
 }

@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class Mana : MonoBehaviour
 {
 
-    public float AktuelleMana;
-    public float MaxMana;
+    public int AktuelleMana;
+    public int MaxMana;
     public Slider Manabar; // Ist für Optische Anzeige zuständig
 
     private void Start() // setzt zum Beginn die Aktuellen Mana auf Max 
     {
-        MaxMana = 100f;
+        MaxMana = 100;
         AktuelleMana = MaxMana;
 
         Manabar.value = ManaErrechnen(); //Errechnet wert der Manabar
@@ -23,7 +23,7 @@ public class Mana : MonoBehaviour
 
     }
 
-    public void DealManaDamage(float ManaSchaden) // Reduziert verbleibende Mana
+    public void DealManaDamage(int ManaSchaden) // Reduziert verbleibende Mana
     {
         AktuelleMana -= ManaSchaden;
         Manabar.value = ManaErrechnen();

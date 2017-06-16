@@ -46,6 +46,10 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     public Text damagetext;
     private int damagecost;
     public Text damagecosttext;
+    private int manacost;
+    public Text manacosttext;
+    private int lifecost;
+    public Text lifecosttext;
     private int mscost;
     public Text msunlock;
     private int tpcost;
@@ -84,6 +88,8 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         damagecost = gamecon.damagecost;
         mscost = gamecon.mscost;
         tpcost = gamecon.tpcost;
+        manacost = gamecon.manacost;
+        lifecost = gamecon.lifecost;
 
         this.settexts();
     }
@@ -200,7 +206,11 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         damagecost = gamecon.damagecost;
         damagecosttext.text = "Cost: " + damagecost.ToString();
         ammocost = gamecon.ammocost;
-        ammocosttext.text = "Cost: " + ammocost.ToString();
+        ammocosttext.text = "Ammo +25 \n Cost: " + ammocost.ToString();
+        manacost = gamecon.manacost;
+        manacosttext.text = "Mana +50 \n Cost: " + manacost.ToString();
+        lifecost = gamecon.lifecost;
+        lifecosttext.text = "Health +30 \n Cost: " + lifecost.ToString();
         if (playcon.msunlock == true)
         {
             msunlock.text = "Unlocked";

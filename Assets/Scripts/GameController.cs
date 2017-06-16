@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -8,10 +9,16 @@ public class GameController : MonoBehaviour
     public bool bulletammo;
     [HideInInspector] public int ammo;
     [HideInInspector] public int ammocost;
+    [HideInInspector] public int manacost;
+    [HideInInspector] public int lifecost;
     [HideInInspector] public bool pickupammo;
     public Transform enemy;
     public GameObject player;
     public PlayerController playcon;
+    public GameObject manabar;
+    public Mana manacon;
+    public GameObject healthbar;
+    public Health healthcon;
     public GameObject spawnpoint1;
     public GameObject spawnpoint2;
     public GameObject spawnpoint3;
@@ -30,11 +37,15 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         playcon = player.GetComponent<PlayerController>();
+        manacon = manabar.GetComponent<Mana>();
+        healthcon = healthbar.GetComponent<Health>();
         bulletammo = true;
         ammo = 100;
         pickupammo = false;
         mscost = 150;
         tpcost = 500;
+        manacost = 200;
+        lifecost = 200;
         wave = 1;
         money = 0;
         damage = 1;
@@ -191,4 +202,38 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void tomenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void manabuy()
+    {
+        if (money >= manacost)
+        {
+            if (manacon.AktuelleMana < 50)
+            {
+                manacon.AktuelleMana += 50;
+            }
+            else
+            {
+                manacon.AktuelleMana = manacon.MaxMana;
+            }
+        }
+    }
+
+    public void lifebuy()
+    {
+        if (money >= lifecost)
+        {
+            if (healthcon.AktuelleLeben < 70)
+            {
+                healthcon.AktuelleLeben += 30;
+            }
+            else
+            {
+                healthcon.AktuelleLeben = healthcon.MaxLeben;
+            }
+        }
+    }
 }
