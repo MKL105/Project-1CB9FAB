@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int lifecost;
     [HideInInspector] public bool pickupammo;
     public Transform enemy;
+    public Transform enemy2;
     public GameObject player;
     public PlayerController playcon;
     public GameObject manabar;
@@ -106,17 +107,44 @@ public class GameController : MonoBehaviour
             switch (num)
             {
                 case 1:
+                    if (this.randomenemy() == 1)
+                    {
                         Instantiate(enemy, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
                         yield return new WaitForSeconds(1.5f);
                         break;
+                    }
+                    else
+                    {
+                        Instantiate(enemy2, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
+                        yield return new WaitForSeconds(1.5f);
+                        break;
+                    }
                 case 2:
+                    if (this.randomenemy() == 1)
+                    {
                         Instantiate(enemy, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
                         yield return new WaitForSeconds(1.5f);
                         break;
+                    }
+                    else
+                    {
+                        Instantiate(enemy2, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
+                        yield return new WaitForSeconds(1.5f);
+                        break;
+                    }
                 case 3:
+                    if (this.randomenemy() == 1)
+                    {
                         Instantiate(enemy, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
                         yield return new WaitForSeconds(1.5f);
                         break;
+                    }
+                    else
+                    {
+                        Instantiate(enemy2, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
+                        yield return new WaitForSeconds(1.5f);
+                        break;
+                    }
             }
             
         }
@@ -234,6 +262,20 @@ public class GameController : MonoBehaviour
             {
                 healthcon.AktuelleLeben = healthcon.MaxLeben;
             }
+        }
+    }
+
+    private int randomenemy()
+    {
+        int num = Random.Range(1, 101);
+
+        if (num <= 3)
+        {
+            return 2;
+        }
+        else
+        {
+            return 1;
         }
     }
 }

@@ -15,7 +15,7 @@ public class Health : MonoBehaviour {
         Healthbar.value = Lebenerrechnen(); //Errechnet wert der Healthbar
     }
 
-    void DealDamage(int Schaden) // Reduziert verbleibende Leben
+    public void DealDamage(int Schaden) // Reduziert verbleibende Leben
     {
         AktuelleLeben -= Schaden;
         Healthbar.value = Lebenerrechnen();
@@ -25,6 +25,7 @@ public class Health : MonoBehaviour {
 
     float Lebenerrechnen() // Errechnet prozentualen Anteil der Aktuellen Leben
     {
+        Debug.Log(AktuelleLeben / MaxLeben);
         return AktuelleLeben / MaxLeben;
     }
 
@@ -32,16 +33,5 @@ public class Health : MonoBehaviour {
     {
         Debug.Log("Game Over");
         AktuelleLeben = 0;
-    }
-
-
-
-
-    void OnTriggerEnter2D(Collider2D collision) //Untersucht ob der Spieler einen Gegner berührt
-    {
-        if(collision.gameObject.CompareTag("Enemy"))
-        {
-            DealDamage(30);
-        }
     }
 }

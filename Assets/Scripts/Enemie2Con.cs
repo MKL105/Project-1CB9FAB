@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemieController : MonoBehaviour {
+public class Enemie2Con: MonoBehaviour
+{
 
     public GameObject player;
     public PlayerController playcon;
@@ -20,6 +21,7 @@ public class EnemieController : MonoBehaviour {
     public GameObject healthbar;
     public Health healthcon;
 
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -29,8 +31,8 @@ public class EnemieController : MonoBehaviour {
         healthbar = GameObject.FindGameObjectWithTag("Health");
         healthcon = healthbar.GetComponent<Health>();
         rb = GetComponent<Rigidbody2D>();
-        speed = 2;
-        value = gamecon.wave;
+        speed = 7;
+        value = gamecon.wave*2;
         MaxLeben = gamecon.wave;
         AktuelleLeben = MaxLeben;
         damage = 30;
@@ -45,7 +47,7 @@ public class EnemieController : MonoBehaviour {
         rb.velocity = direction * speed; //sorgt für Bewegung des Enemy
 
         if (AktuelleLeben <= 0)// Überprüft ob Leben vorhanden ist
-        { 
+        {
             Die(); // falls nein wird Die() ausgeführt
         }
     }
@@ -53,9 +55,9 @@ public class EnemieController : MonoBehaviour {
     // Reduziert verbleibende Leben
     void DealDamage(float Schaden)
     {
-        AktuelleLeben -= Schaden/2; //wird durch 2 geteilt da der Enemy doppelt so viel schaden bekommt wie er sollte
+        AktuelleLeben -= Schaden / 2; //wird durch 2 geteilt da der Enemy doppelt so viel schaden bekommt wie er sollte
     }
- 
+
     void Die()
     {
         if (this.dropammo(5.0f) == true)

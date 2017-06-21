@@ -88,12 +88,14 @@
     <Compile Include="Assets\Scripts\Bullets\bul7controller.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Cooldown Controll\OverlayController.cs" />
+    <Compile Include="Assets\Scripts\Enemie2Con.cs" />
     <Compile Include="Assets\Scripts\EnemieController.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\Mainmenu.cs" />
     <Compile Include="Assets\Scripts\Mana.cs" />
     <Compile Include="Assets\Scripts\PickUps\PickUpAmmoCon.cs" />
+    <Compile Include="Assets\Scripts\PickUps\StaminUp.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Skillmenu.cs" />
   </ItemGroup>
