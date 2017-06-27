@@ -54,8 +54,16 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     public Text msunlock;
     private int tpcost;
     public Text tpunlock;
+    private int ammoupgradecost;
+    public Text ammoupgradetext;
+    private int mscdrcost;
+    private int mscdr;
+    public Text mscdrtext;
+    private int tpcdrcost;
+    private int tpcdr;
+    public Text tpcdrtext;
 
-   
+
 
     //wird beim Initialisieren aufgerufen
     void Start()
@@ -90,6 +98,12 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         tpcost = gamecon.tpcost;
         manacost = gamecon.manacost;
         lifecost = gamecon.lifecost;
+        ammoupgradecost = gamecon.ammoupgradecost;
+        mscdrcost = gamecon.mscdrcost;
+        mscdr = gamecon.mscdr;
+        tpcdrcost = gamecon.tpcdrcost;
+        tpcdr = gamecon.tpcdr;
+
 
         this.settexts();
     }
@@ -206,11 +220,16 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         damagecost = gamecon.damagecost;
         damagecosttext.text = "Cost: " + damagecost.ToString();
         ammocost = gamecon.ammocost;
-        ammocosttext.text = "Ammo +25 \n Cost: " + ammocost.ToString();
+        ammocosttext.text = "Ammo refill \n Cost: " + ammocost.ToString();
         manacost = gamecon.manacost;
         manacosttext.text = "Mana +50 \n Cost: " + manacost.ToString();
         lifecost = gamecon.lifecost;
         lifecosttext.text = "Health +30 \n Cost: " + lifecost.ToString();
+        ammoupgradecost = gamecon.ammoupgradecost;
+        ammoupgradetext.text = "Cost: " + ammoupgradecost.ToString();
+        mscdr = gamecon.mscdr;
+        tpcdr = gamecon.tpcdr;
+
         if (playcon.msunlock == true)
         {
             msunlock.text = "Unlocked";
@@ -220,6 +239,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
             mscost = gamecon.mscost;
             msunlock.text = "Cost: " + mscost.ToString();
         }
+
         if (playcon.tpunlock == true)
         {
             tpunlock.text = "Unlocked";
@@ -228,6 +248,26 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         {
             tpcost = gamecon.tpcost;
             tpunlock.text = "Cost: " + tpcost.ToString();
+        }
+
+        if (mscdr < 5)
+        {
+            mscdrcost = gamecon.mscdrcost;
+            mscdrtext.text = "Cost: " + mscdrcost.ToString();
+        }
+        else
+        {
+            mscdrtext.text = "Max. Level";
+        }
+
+        if (tpcdr < 6)
+        {
+            tpcdrcost = gamecon.tpcdrcost;
+            tpcdrtext.text = "Cost: " + tpcdrcost.ToString();
+        }
+        else
+        {
+            tpcdrtext.text = "Max. Level";
         }
     }
 }

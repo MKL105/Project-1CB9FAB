@@ -8,7 +8,9 @@ public class GameController : MonoBehaviour
 
     public bool bulletammo;
     [HideInInspector] public int ammo;
+    [HideInInspector] public int maxammo;
     [HideInInspector] public int ammocost;
+    [HideInInspector] public int ammoupgradecost;
     [HideInInspector] public int manacost;
     [HideInInspector] public int lifecost;
     [HideInInspector] public bool pickupammo;
@@ -33,6 +35,10 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int damagecost;
     [HideInInspector] public int mscost;
     [HideInInspector] public int tpcost;
+    [HideInInspector] public int mscdr;
+    [HideInInspector] public int mscdrcost;
+    [HideInInspector] public int tpcdr;
+    [HideInInspector] public int tpcdrcost;
 
 
     private void Start()
@@ -41,7 +47,12 @@ public class GameController : MonoBehaviour
         manacon = manabar.GetComponent<Mana>();
         healthcon = healthbar.GetComponent<Health>();
         bulletammo = true;
+        mscdr = 1;
+        tpcdr = 1;
+        mscdrcost = 200;
+        tpcdrcost = 750;
         ammo = 100;
+        maxammo = 200;
         pickupammo = false;
         mscost = 150;
         tpcost = 500;
@@ -51,7 +62,8 @@ public class GameController : MonoBehaviour
         money = 0;
         damage = 1;
         damagecost = 25;
-        ammocost = 25;
+        ammocost = 50;
+        ammoupgradecost = 50;
         newenemies = newenem();
         waveover = true;
         spawning();
@@ -207,8 +219,7 @@ public class GameController : MonoBehaviour
     {
         if (money >= ammocost)
         {
-            this.ammo += 25;
-            money -= ammocost;
+            this.ammo = maxammo;
         }
     }
 
@@ -269,13 +280,43 @@ public class GameController : MonoBehaviour
     {
         int num = Random.Range(1, 101);
 
-        if (num <= 3)
+        if (num <= 7) //Schneller Gegner
         {
             return 2;
         }
-        else
+        else //normaler Gegner
         {
             return 1;
         }
     }
+
+    public void upgrademaxammo()
+    {
+        if (money >= ammoupgradecost)
+        {
+            maxammo += 50;
+            ammoupgradecost += 50;
+        }
+    }
+
+    public void reducemscd()
+    {
+        if ((money >= mscdrcost) && (mscdr < 6))
+        {
+            playcon.cdmultishot -= 1.0f;
+            mscdrcost += 100;
+            mscdr++;
+        }
+    }
+
+    public void reducetpcd()
+    {
+        if ((money >= tpcdrcost) && (tpcdr < 7))
+        {
+            playcon.cdteleport -= 5.0f;
+            tpcdrcost += 150;
+            tpcdr++;
+        }
+    }
 }
+

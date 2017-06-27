@@ -17,8 +17,16 @@ public class PickUpAmmoCon : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gamecon.ammo += 50;
-            Destroy(gameObject);
+            if (gamecon.ammo < (gamecon.maxammo - 50))
+            {
+                gamecon.ammo += 50;
+                Destroy(gameObject);
+            }
+            else
+            {
+                gamecon.ammo = gamecon.maxammo;
+                Destroy(gameObject);
+            }
         }
     }
 }
