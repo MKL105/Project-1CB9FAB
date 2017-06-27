@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     public GameObject manabar;
     public Mana manacon;
     [HideInInspector] public float damage;
+    [HideInInspector] public float tpmana;
+    [HideInInspector] public float msmana;
 
     //wird beim Initialisieren aufgerufen
     private void Start()
@@ -54,6 +56,8 @@ public class PlayerController : MonoBehaviour
         tpunlock = false;
         manacon = manabar.GetComponent<Mana>();
         damage = 1.0f;
+        tpmana = 25.0f;
+        msmana = 10.0f;
     }
 
     //wird vor jedem Frame aufgerufen
@@ -258,7 +262,7 @@ public class PlayerController : MonoBehaviour
             newbullet6.transform.position = new Vector3(playerpos.x, playerpos.y, playerpos.z);
             GameObject newbullet7 = Instantiate(bullet7) as GameObject;
             newbullet7.transform.position = new Vector3(playerpos.x, playerpos.y, playerpos.z);
-            manacon.DealManaDamage(10);
+            manacon.DealManaDamage(msmana);
         }
     }
 
@@ -321,7 +325,7 @@ public class PlayerController : MonoBehaviour
         {
             nextfiretp = Time.time + cdteleport;
             rb.transform.position = new Vector3(tox, toy, toz);
-            manacon.DealManaDamage(25);
+            manacon.DealManaDamage(tpmana);
         }
     }
 

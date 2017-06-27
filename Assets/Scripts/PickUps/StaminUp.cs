@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class StaminUp : MonoBehaviour {
 
-    private GameController gamecon;
-    public GameObject area;
-    public GameObject Player;
-    public PlayerController playercon;
+    public GameObject player;
+    public PlayerController playcon;
     public float DauerStaminUp;
     private bool inuse = false;
     private SpriteRenderer Sa;
 
     void Start () {
-        gamecon = area.GetComponent<GameController>();
-        playercon = Player.GetComponent<PlayerController>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playcon = player.GetComponent<PlayerController>();
         DauerStaminUp = 5.0f;
         Sa = GetComponent<SpriteRenderer>();
     }
@@ -26,11 +24,9 @@ public class StaminUp : MonoBehaviour {
             Color uns = Sa.color;
             uns.a = 0;
             Sa.color = uns;
-            if (  inuse == false)
-           {
-               
+            if (inuse == false)
+            {
                 StartCoroutine(memes());
-                
             }
         }
     }
@@ -38,10 +34,9 @@ public class StaminUp : MonoBehaviour {
     IEnumerator memes()
     {
         inuse = true;
-        playercon.speed = playercon.speed + 10;
-
+        playcon.speed = playcon.speed + 10;
         yield return new WaitForSeconds(5);
-        playercon.speed = 4;
+        playcon.speed = 4;
         Destroy(gameObject);
         inuse = false;
     }

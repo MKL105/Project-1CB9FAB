@@ -85,7 +85,6 @@ public class GameController : MonoBehaviour
         if(enemleft == 0)
         {
             waveover = true;
-            Debug.Log("Wave over");
             wave++;
             spawning();
             waveover = false;
@@ -250,13 +249,15 @@ public class GameController : MonoBehaviour
     {
         if (money >= manacost)
         {
-            if (manacon.AktuelleMana < 50)
+            if (manacon.AktuelleMana < 50.0f)
             {
-                manacon.AktuelleMana += 50;
+                manacon.AktuelleMana += 50.0f;
+                money -= manacost;
             }
             else
             {
                 manacon.AktuelleMana = manacon.MaxMana;
+                money -= manacost;
             }
         }
     }
@@ -265,13 +266,15 @@ public class GameController : MonoBehaviour
     {
         if (money >= lifecost)
         {
-            if (healthcon.AktuelleLeben < 70)
+            if (healthcon.AktuelleLeben < 70.0f)
             {
-                healthcon.AktuelleLeben += 30;
+                healthcon.AktuelleLeben += 30.0f;
+                money -= lifecost;
             }
             else
             {
                 healthcon.AktuelleLeben = healthcon.MaxLeben;
+                money -= lifecost;
             }
         }
     }
@@ -296,6 +299,7 @@ public class GameController : MonoBehaviour
         {
             maxammo += 50;
             ammoupgradecost += 50;
+            money -= ammoupgradecost;
         }
     }
 
@@ -306,6 +310,7 @@ public class GameController : MonoBehaviour
             playcon.cdmultishot -= 1.0f;
             mscdrcost += 100;
             mscdr++;
+            money -= mscdrcost;
         }
     }
 
@@ -316,6 +321,7 @@ public class GameController : MonoBehaviour
             playcon.cdteleport -= 5.0f;
             tpcdrcost += 150;
             tpcdr++;
+            money -= tpcdrcost;
         }
     }
 }

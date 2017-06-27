@@ -6,28 +6,23 @@ using UnityEngine.UI;
 public class Mana : MonoBehaviour
 {
 
-    public int AktuelleMana;
-    public int MaxMana;
+    public float AktuelleMana;
+    public float MaxMana;
     public Slider Manabar; // Ist für Optische Anzeige zuständig
 
     private void Start() // setzt zum Beginn die Aktuellen Mana auf Max 
     {
-        MaxMana = 100;
+        MaxMana = 100.0f;
         AktuelleMana = MaxMana;
 
         Manabar.value = ManaErrechnen(); //Errechnet wert der Manabar
     }
 
-    private void Update()
-    {
-
-    }
-
-    public void DealManaDamage(int ManaSchaden) // Reduziert verbleibende Mana
+    public void DealManaDamage(float ManaSchaden) // Reduziert verbleibende Mana
     {
         AktuelleMana -= ManaSchaden;
         Manabar.value = ManaErrechnen();
-        if (AktuelleMana <= 0) // Überprüft ob Mana vorhanden ist
+        if (AktuelleMana <= 0.0f) // Überprüft ob Mana vorhanden ist
             NoSpell(); // falls nein wird noSpell() ausgeführt
     }
 

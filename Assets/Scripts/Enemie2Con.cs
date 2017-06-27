@@ -16,6 +16,7 @@ public class Enemie2Con: MonoBehaviour
     public float AktuelleLeben;
     [HideInInspector] public float MaxLeben;
     public GameObject ammodrop;
+    public GameObject staminup;
     private int value; //wie viel Geld der gegner beim tod gibt
     [HideInInspector] public int damage;
     public GameObject healthbar;
@@ -60,18 +61,42 @@ public class Enemie2Con: MonoBehaviour
 
     void Die()
     {
-        if (this.dropammo(5.0f) == true)
+        int num = randitem();
+        switch (num)
         {
-            GameObject newammo = Instantiate(ammodrop) as GameObject;
-            newammo.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            gamecon.money += value;
-            Destroy(gameObject);
+            case 1:
+                if (this.dropitem(5.0f) == true)
+                {
+                    GameObject newammo = Instantiate(ammodrop) as GameObject;
+                    newammo.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                    gamecon.money += value;
+                    Destroy(gameObject);
+                    break;
+                }
+                else
+                {
+                    gamecon.money += value;
+                    Destroy(gameObject);
+                    break;
+                }
+
+            case 2:
+                if (this.dropitem(5.0f) == true)
+                {
+                    GameObject newstaminup = Instantiate(staminup) as GameObject;
+                    newstaminup.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                    gamecon.money += value;
+                    Destroy(gameObject);
+                    break;
+                }
+                else
+                {
+                    gamecon.money += value;
+                    Destroy(gameObject);
+                    break;
+                }
         }
-        else
-        {
-            gamecon.money += value;
-            Destroy(gameObject);
-        }
+
     }
 
     //Untersucht ob der Enemy eine Kugel berührt
@@ -90,20 +115,33 @@ public class Enemie2Con: MonoBehaviour
         }
     }
 
-    //berechnet Dropchance fuer Munition
-    //gibt true zurück, wenn Munition gedroppt werden soll
-    private bool dropammo(float dropchance) //in % -> 50.0 = 50%ige Chance
+    //berechnet Dropchance fuer Items
+    //gibt true zurück, wenn Item gedroppt werden soll
+    private bool dropitem(float dropchance) //in % -> 50.0 = 50%ige Chance
     {
         float drc = dropchance;
         float num = Random.Range(0.0f, 100.0f); //errechnet Zufallszahl zwischen 0 und 100
 
-        if (num < drc) //Munition wird fallengelassen
+        if (num < drc) //Item wird fallengelassen
         {
             return true;
         }
-        else //Munition wird nicht fallengelassen
+        else //Item wird nicht fallengelassen
         {
             return false;
+        }
+    }
+
+    private int randitem()
+    {
+        float chan = Random.Range(0.0f, 100.0f);
+        if (chan < 50.0f)
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
         }
     }
 }
