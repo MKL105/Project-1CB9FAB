@@ -5,8 +5,6 @@ using UnityEngine;
 public class Instakill : MonoBehaviour
 {
 
-    private GameController gamecon;
-    public GameObject area;
     public GameObject Player;
     public PlayerController playercon;
     public float DauerInstakill;
@@ -15,7 +13,6 @@ public class Instakill : MonoBehaviour
     private float aktuellerschaden;
     void Start()
     {
-        gamecon = area.GetComponent<GameController>();
         playercon = Player.GetComponent<PlayerController>();
         DauerInstakill = 10f;
         Sr = GetComponent<SpriteRenderer>();

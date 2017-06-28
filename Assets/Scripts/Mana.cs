@@ -14,14 +14,13 @@ public class Mana : MonoBehaviour
     {
         MaxMana = 100.0f;
         AktuelleMana = MaxMana;
-
-        Manabar.value = ManaErrechnen(); //Errechnet wert der Manabar
+        setvalue(); //Errechnet wert der Manabar
     }
 
     public void DealManaDamage(float ManaSchaden) // Reduziert verbleibende Mana
     {
         AktuelleMana -= ManaSchaden;
-        Manabar.value = ManaErrechnen();
+        setvalue();
         if (AktuelleMana <= 0.0f) // Überprüft ob Mana vorhanden ist
             NoSpell(); // falls nein wird noSpell() ausgeführt
     }
@@ -34,5 +33,10 @@ public class Mana : MonoBehaviour
     void NoSpell() //Printet in der Console das kein Mana mehr vorhanden ist soll später das wirken von Spells verhindern
     {
         AktuelleMana = 0;
+    }
+
+    public void setvalue()
+    {
+        Manabar.value = ManaErrechnen();
     }
 }

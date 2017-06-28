@@ -39,6 +39,14 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int mscdrcost;
     [HideInInspector] public int tpcdr;
     [HideInInspector] public int tpcdrcost;
+    [HideInInspector] public int tpmanareducecosts;
+    [HideInInspector] public int tpmanared;
+    [HideInInspector] public int msmanareducecosts;
+    [HideInInspector] public int msmanared;
+    [HideInInspector] public int tprangecosts;
+    [HideInInspector] public int tprangeup;
+    public GameObject tpupgrades;
+    public GameObject msupgrades;
 
 
     private void Start()
@@ -49,8 +57,14 @@ public class GameController : MonoBehaviour
         bulletammo = true;
         mscdr = 1;
         tpcdr = 1;
+        tpmanared = 1;
+        msmanared = 1;
         mscdrcost = 200;
         tpcdrcost = 750;
+        tpmanareducecosts = 500;
+        msmanareducecosts = 150;
+        tprangecosts = 400;
+        tprangeup = 1;
         ammo = 100;
         maxammo = 200;
         pickupammo = false;
@@ -59,11 +73,13 @@ public class GameController : MonoBehaviour
         manacost = 200;
         lifecost = 200;
         wave = 1;
-        money = 0;
+        money = 100000; //zum testen ändern aber wieder auf 0 zurücksetzen
         damage = 1;
         damagecost = 25;
         ammocost = 50;
         ammoupgradecost = 50;
+        tpupgrades.gameObject.SetActive(false);
+        msupgrades.gameObject.SetActive(false);
         newenemies = newenem();
         waveover = true;
         spawning();
@@ -224,19 +240,21 @@ public class GameController : MonoBehaviour
 
     public void unlockmultishot()
     {
-        if(money >= mscost)
+        if((money >= mscost) && (playcon.msunlock == false))
         {
             playcon.msunlock = true;
             money -= mscost;
+            msupgrades.gameObject.SetActive(true);
         }
     }
 
     public void unlockteleport()
     {
-        if (money >= tpcost)
+        if ((money >= tpcost) && (playcon.msunlock == false))
         {
             playcon.tpunlock = true;
             money -= tpcost;
+            tpupgrades.gameObject.SetActive(true);
         }
     }
 
@@ -253,11 +271,13 @@ public class GameController : MonoBehaviour
             {
                 manacon.AktuelleMana += 50.0f;
                 money -= manacost;
+                manacon.setvalue();
             }
             else
             {
                 manacon.AktuelleMana = manacon.MaxMana;
                 money -= manacost;
+                manacon.setvalue();
             }
         }
     }
@@ -270,11 +290,13 @@ public class GameController : MonoBehaviour
             {
                 healthcon.AktuelleLeben += 30.0f;
                 money -= lifecost;
+                healthcon.setvalue();
             }
             else
             {
                 healthcon.AktuelleLeben = healthcon.MaxLeben;
                 money -= lifecost;
+                healthcon.setvalue();
             }
         }
     }
@@ -322,6 +344,39 @@ public class GameController : MonoBehaviour
             tpcdrcost += 150;
             tpcdr++;
             money -= tpcdrcost;
+        }
+    }
+
+    public void reducetpmana()
+    {
+        if ((money >= tpmanareducecosts) && (tpmanared < 7))
+        {
+            playcon.tpmana -= 2.0f;
+            tpmanareducecosts += 150;
+            tpmanared++;
+            money -= tpmanareducecosts;
+        }
+    }
+
+    public void reducemsmana()
+    {
+        if ((money >= msmanareducecosts) && (msmanared < 6))
+        {
+            playcon.msmana -= 1.0f;
+            msmanareducecosts += 100;
+            msmanared++;
+            money -= msmanareducecosts;
+        }
+    }
+
+    public void upgraderange()
+    {
+        if ((money >= tprangecosts) && (tprangeup < 6))
+        {
+            playcon.tprange++;
+            tprangecosts += 150;
+            tprangeup++;
+            money -= tprangecosts;
         }
     }
 }

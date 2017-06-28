@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float tpmana;
     [HideInInspector] public float msmana;
     [HideInInspector] public float erhoehterdamage;
+    [HideInInspector] public int tprange;
 
     //wird beim Initialisieren aufgerufen
     private void Start()
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
         multishot = false;
         attack = true;
         tp = false;
+        tprange = 5;
         ammo = true;
         msunlock = false;
         tpunlock = false;
@@ -319,7 +321,7 @@ public class PlayerController : MonoBehaviour
         Vector2 mypos = new Vector2(transform.position.x, transform.position.y);
         Vector2 direction = mouseInWorld - mypos;
         direction.Normalize();
-        direction = direction * 5;
+        direction = direction * tprange;
         float tox = transform.position.x + direction.x;
         float toy = transform.position.y + direction.y;
         float toz = transform.position.z;

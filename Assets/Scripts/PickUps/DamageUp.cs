@@ -5,8 +5,6 @@ using UnityEngine;
 public class DamageUp : MonoBehaviour
 {
 
-    private GameController gamecon;
-    public GameObject area;
     public GameObject Player;
     public PlayerController playercon;
     public float DauerDamageUp;
@@ -15,7 +13,6 @@ public class DamageUp : MonoBehaviour
     private float aktuellerschaden;
     void Start()
     {
-        gamecon = area.GetComponent<GameController>();
         playercon = Player.GetComponent<PlayerController>();
         DauerDamageUp = 10f;
         Sr = GetComponent<SpriteRenderer>();

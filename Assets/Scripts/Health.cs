@@ -13,13 +13,13 @@ public class Health : MonoBehaviour {
     {
         MaxLeben = 100.0f;
         AktuelleLeben = MaxLeben;
-        Healthbar.value = Lebenerrechnen(); //Errechnet wert der Healthbar
+        setvalue(); //Errechnet wert der Healthbar
     }
 
     public void DealDamage(float Schaden) // Reduziert verbleibende Leben
     {
         AktuelleLeben -= Schaden;
-        Healthbar.value = Lebenerrechnen();
+        setvalue();
         if (AktuelleLeben <= 0.0f) // Überprüft ob Leben vorhanden ist
             Die(); // falls nein wird Die() ausgeführt
     }
@@ -33,5 +33,10 @@ public class Health : MonoBehaviour {
     {
         AktuelleLeben = 0;
         SceneManager.LoadScene(2);
+    }
+
+    public void setvalue()
+    {
+        Healthbar.value = Lebenerrechnen();
     }
 }

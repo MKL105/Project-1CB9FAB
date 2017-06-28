@@ -62,7 +62,15 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     private int tpcdrcost;
     private int tpcdr;
     public Text tpcdrtext;
-
+    private int tpmanared;
+    private int tpmanaredcost;
+    public Text tpmanaredtext;
+    private int msmanared;
+    private int msmanaredcost;
+    public Text msmanaredtext;
+    private int tprangecosts;
+    private int tprangeup;
+    public Text tprangetext;
 
 
     //wird beim Initialisieren aufgerufen
@@ -103,6 +111,12 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         mscdr = gamecon.mscdr;
         tpcdrcost = gamecon.tpcdrcost;
         tpcdr = gamecon.tpcdr;
+        tpmanared = gamecon.tpmanared;
+        tpmanaredcost = gamecon.tpmanareducecosts;
+        msmanaredcost = gamecon.msmanareducecosts;
+        msmanared = gamecon.msmanared;
+        tprangecosts = gamecon.tprangecosts;
+        tprangeup = gamecon.tprangeup;
 
 
         this.settexts();
@@ -229,6 +243,9 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         ammoupgradetext.text = "Cost: " + ammoupgradecost.ToString();
         mscdr = gamecon.mscdr;
         tpcdr = gamecon.tpcdr;
+        tpmanared = gamecon.tpmanared;
+        msmanared = gamecon.msmanared;
+        tprangeup = gamecon.tprangeup;
 
         if (playcon.msunlock == true)
         {
@@ -268,6 +285,36 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         else
         {
             tpcdrtext.text = "Max. Level";
+        }
+
+        if (tpmanared < 6)
+        {
+            tpmanaredcost = gamecon.tpmanareducecosts;
+            tpmanaredtext.text = "Cost: " + tpmanaredcost.ToString(); 
+        }
+        else
+        {
+            tpmanaredtext.text = "Max. Level";
+        }
+
+        if (msmanared < 5)
+        {
+            msmanaredcost = gamecon.msmanareducecosts;
+            msmanaredtext.text = "Cost: " + msmanaredcost.ToString();
+        }
+        else
+        {
+            msmanaredtext.text = "Max. Level";
+        }
+
+        if (tprangeup < 5)
+        {
+            tprangecosts = gamecon.tprangecosts;
+            tprangetext.text = "Cost: " + tprangecosts.ToString();
+        }
+        else
+        {
+            tprangetext.text = "Max. Level";
         }
     }
 }
