@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float damage;
     [HideInInspector] public float tpmana;
     [HideInInspector] public float msmana;
+    [HideInInspector] public float erhoehterdamage;
 
     //wird beim Initialisieren aufgerufen
     private void Start()
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
         damage = 1.0f;
         tpmana = 25.0f;
         msmana = 10.0f;
+        erhoehterdamage = 0;
     }
 
     //wird vor jedem Frame aufgerufen
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
         this.cooldownms();
         this.cooldownatk();
         this.cooldowntp();
+        damage = damage + erhoehterdamage;
     }
 
     //wird vor allem was mit physics zu tun hat aufgerufen
