@@ -24,7 +24,6 @@ public class DamageUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            aktuellerschaden = playercon.damage;
             Color uns = Sr.color;
             uns.a = 0;
             Sr.color = uns;
@@ -40,10 +39,9 @@ public class DamageUp : MonoBehaviour
     IEnumerator memes()
     {
         inuse = true;
-        playercon.damage = playercon.damage + 3.5f;
-
+        playercon.damage += 3.5f;
         yield return new WaitForSeconds(DauerDamageUp);
-        playercon.damage = aktuellerschaden;
+        playercon.damage -= 3.5f;
         Destroy(gameObject);
         inuse = false;
     }

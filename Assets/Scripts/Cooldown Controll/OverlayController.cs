@@ -71,6 +71,9 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
     private int tprangecosts;
     private int tprangeup;
     public Text tprangetext;
+    private int speedupcost;
+    private int spup;
+    public Text speeduptext;
 
 
     //wird beim Initialisieren aufgerufen
@@ -117,7 +120,8 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         msmanared = gamecon.msmanared;
         tprangecosts = gamecon.tprangecosts;
         tprangeup = gamecon.tprangeup;
-
+        speedupcost = gamecon.speedupcost;
+        spup = gamecon.spup;
 
         this.settexts();
     }
@@ -246,6 +250,8 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         tpmanared = gamecon.tpmanared;
         msmanared = gamecon.msmanared;
         tprangeup = gamecon.tprangeup;
+        speedupcost = gamecon.speedupcost;
+        spup = gamecon.spup;
 
         if (playcon.msunlock == true)
         {
@@ -267,7 +273,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
             tpunlock.text = "Cost: " + tpcost.ToString();
         }
 
-        if (mscdr < 5)
+        if (mscdr < 6)
         {
             mscdrcost = gamecon.mscdrcost;
             mscdrtext.text = "Cost: " + mscdrcost.ToString();
@@ -277,7 +283,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
             mscdrtext.text = "Max. Level";
         }
 
-        if (tpcdr < 6)
+        if (tpcdr < 7)
         {
             tpcdrcost = gamecon.tpcdrcost;
             tpcdrtext.text = "Cost: " + tpcdrcost.ToString();
@@ -287,7 +293,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
             tpcdrtext.text = "Max. Level";
         }
 
-        if (tpmanared < 6)
+        if (tpmanared < 7)
         {
             tpmanaredcost = gamecon.tpmanareducecosts;
             tpmanaredtext.text = "Cost: " + tpmanaredcost.ToString(); 
@@ -297,7 +303,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
             tpmanaredtext.text = "Max. Level";
         }
 
-        if (msmanared < 5)
+        if (msmanared < 6)
         {
             msmanaredcost = gamecon.msmanareducecosts;
             msmanaredtext.text = "Cost: " + msmanaredcost.ToString();
@@ -307,7 +313,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
             msmanaredtext.text = "Max. Level";
         }
 
-        if (tprangeup < 5)
+        if (tprangeup < 6)
         {
             tprangecosts = gamecon.tprangecosts;
             tprangetext.text = "Cost: " + tprangecosts.ToString();
@@ -315,6 +321,26 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         else
         {
             tprangetext.text = "Max. Level";
+        }
+
+        if (damage > 9999999999999f)
+        {
+            damagetext.text = "Instakill";
+        }
+        else
+        {
+            damage = gamecon.damage;
+            damagetext.text = "Damage: " + damage.ToString();
+        }
+
+        if (spup < 4)
+        {
+            speedupcost = gamecon.speedupcost;
+            speeduptext.text = "Cost: " + speedupcost.ToString();
+        }
+        else
+        {
+            speeduptext.text = "Max. Level";
         }
     }
 }

@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     private bool ammo;
     public GameObject manabar;
     public Mana manacon;
+    public GameObject healthbar;
+    public Health healthcon;
     [HideInInspector] public float damage;
     [HideInInspector] public float tpmana;
     [HideInInspector] public float msmana;
@@ -58,10 +60,10 @@ public class PlayerController : MonoBehaviour
         msunlock = false;
         tpunlock = false;
         manacon = manabar.GetComponent<Mana>();
+        healthcon = healthbar.GetComponent<Health>();
         damage = 1.0f;
         tpmana = 25.0f;
         msmana = 10.0f;
-        erhoehterdamage = 0;
     }
 
     //wird vor jedem Frame aufgerufen
@@ -74,7 +76,6 @@ public class PlayerController : MonoBehaviour
         this.cooldownms();
         this.cooldownatk();
         this.cooldowntp();
-        damage = damage + erhoehterdamage;
     }
 
     //wird vor allem was mit physics zu tun hat aufgerufen
@@ -334,5 +335,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
 }

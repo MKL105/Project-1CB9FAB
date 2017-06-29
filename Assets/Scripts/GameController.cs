@@ -45,6 +45,8 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int msmanared;
     [HideInInspector] public int tprangecosts;
     [HideInInspector] public int tprangeup;
+    [HideInInspector] public int speedupcost;
+    [HideInInspector] public int spup;
     public GameObject tpupgrades;
     public GameObject msupgrades;
 
@@ -64,6 +66,8 @@ public class GameController : MonoBehaviour
         tpmanareducecosts = 500;
         msmanareducecosts = 150;
         tprangecosts = 400;
+        speedupcost = 500;
+        spup = 1;
         tprangeup = 1;
         ammo = 100;
         maxammo = 200;
@@ -73,7 +77,7 @@ public class GameController : MonoBehaviour
         manacost = 200;
         lifecost = 200;
         wave = 1;
-        money = 100000; //zum testen ändern aber wieder auf 0 zurücksetzen
+        money = 0; //zum testen ändern aber wieder auf 0 zurücksetzen
         damage = 1;
         damagecost = 25;
         ammocost = 50;
@@ -377,6 +381,17 @@ public class GameController : MonoBehaviour
             tprangecosts += 150;
             tprangeup++;
             money -= tprangecosts;
+        }
+    }
+
+    public void speedbuy()
+    {
+        if ((money >= speedupcost) && (spup < 4))
+        {
+            playcon.speed++;
+            speedupcost += 200;
+            spup++;
+            money -= speedupcost;
         }
     }
 }
