@@ -22,6 +22,7 @@ public class Boss : MonoBehaviour {
     public GameObject bul2;
     public GameObject bul3;
     public GameObject bul4;
+    public GameObject bul5;
     [HideInInspector] public float cdattack; //Cooldownzeit fuer Attacke
     [HideInInspector] public float nextfireatk; //Zeit, wenn die Attacke wieder aufgeladen ist
 
@@ -89,7 +90,7 @@ public class Boss : MonoBehaviour {
         if ((Time.time > nextfireatk))
         {
             nextfireatk = Time.time + cdattack;
-            GameObject newbullet = Instantiate(bullet) as GameObject;
+            GameObject newbullet = Instantiate(bul5) as GameObject;
             newbullet.transform.position = new Vector3(bosspos.x, bosspos.y, bosspos.z);
             GameObject newbullet1 = Instantiate(bul1) as GameObject;
             newbullet1.transform.position = new Vector3(bosspos.x, bosspos.y, bosspos.z);

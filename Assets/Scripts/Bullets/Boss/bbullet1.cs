@@ -11,6 +11,7 @@ public class bbullet1 : MonoBehaviour {
     public Boss bosscon;
     public GameObject healthbar;
     public Health healthcon;
+    public GameObject bullet;
 
     //wird bei der Initialisierung aufgerufen
     private void Start()
@@ -33,6 +34,16 @@ public class bbullet1 : MonoBehaviour {
         Vector2 direction = playerpos - mypos; //berechnet Richtungsvektor
         direction.Normalize(); //gibt Vektor die Länge 1
         direction = Quaternion.Euler(0f, 0f, 22.5f) * direction;
+        if (direction.x > 0)
+        {
+            float ang = (180f * Mathf.Atan(direction.y / direction.x)) / Mathf.PI;
+            bullet.transform.Rotate(0f, 0f, ang);
+        }
+        else
+        {
+            float ang = (180f * Mathf.Atan(direction.y / direction.x)) / Mathf.PI;
+            bullet.transform.Rotate(0f, 0f, (ang + 180f));
+        }
         bul.velocity = direction * speed; //sorgt für Bewegung der Kugel
     }
 

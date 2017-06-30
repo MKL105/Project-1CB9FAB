@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Bullets\Boss\bbullet2.cs" />
     <Compile Include="Assets\Scripts\Bullets\Boss\bbullet3.cs" />
     <Compile Include="Assets\Scripts\Bullets\Boss\bbullet4.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Boss\bbullet5.cs" />
     <Compile Include="Assets\Scripts\Bullets\Player\BulletController.cs" />
     <Compile Include="Assets\Scripts\Bullets\Player\b1controller.cs" />
     <Compile Include="Assets\Scripts\Bullets\Player\bul2controller.cs" />

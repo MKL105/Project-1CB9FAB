@@ -138,7 +138,7 @@ public class GameController : MonoBehaviour
     IEnumerator spawnwave()
     {
         newenemies = newenem();
-        if (wave != 10)
+        if (wave != 3)
         {
             for (int i = 0; i < newenemies; i++)
             {
@@ -237,7 +237,7 @@ public class GameController : MonoBehaviour
 
     private int newenem()
     {
-        if (wave !=10)
+        if (wave !=3)
         {
             int c = wave * (wave + 5) / 2;
             return c;

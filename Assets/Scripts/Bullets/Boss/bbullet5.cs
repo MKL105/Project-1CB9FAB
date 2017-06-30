@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bbullet2 : MonoBehaviour {
+public class bbullet5 : MonoBehaviour {
 
     public Rigidbody2D bul;
     public float speed;
@@ -33,7 +33,6 @@ public class bbullet2 : MonoBehaviour {
         Vector2 mypos = new Vector2(transform.position.x, transform.position.y); //berechnet Vector2 von eigener Position
         Vector2 direction = playerpos - mypos; //berechnet Richtungsvektor
         direction.Normalize(); //gibt Vektor die Länge 1
-        direction = Quaternion.Euler(0f, 0f, 45f) * direction;
         if (direction.x > 0)
         {
             float ang = (180f * Mathf.Atan(direction.y / direction.x)) / Mathf.PI;
