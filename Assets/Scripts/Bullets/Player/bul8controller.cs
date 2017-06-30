@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bul4controller : MonoBehaviour {
+public class bul8controller : MonoBehaviour {
 
-    public GameObject bullet4;
-    public Rigidbody2D bul4;
+    public GameObject bullet8;
+    public Rigidbody2D bul8;
     public float speed;
 
     //wird bei der Initialisierung aufgerufen
     private void Start()
     {
-        bul4 = GetComponent<Rigidbody2D>();
+        bul8 = GetComponent<Rigidbody2D>();
         speed = 15;
         this.shooting();
     }
@@ -23,18 +23,17 @@ public class bul4controller : MonoBehaviour {
         Vector2 mypos = new Vector2(transform.position.x, transform.position.y);
         Vector2 direction = mouseInWorld - mypos;
         direction.Normalize();
-        direction = Quaternion.Euler(0, 0, 45) * direction; //dreht Bewegungsrichtung um 45°
         if (direction.x > 0)
         {
             float ang = (180f * Mathf.Atan(direction.y / direction.x)) / Mathf.PI;
-            bullet4.transform.Rotate(0f, 0f, ang);
+            bullet8.transform.Rotate(0f, 0f, ang);
         }
         else
         {
             float ang = (180f * Mathf.Atan(direction.y / direction.x)) / Mathf.PI;
-            bullet4.transform.Rotate(0f, 0f, (ang + 180f));
+            bullet8.transform.Rotate(0f, 0f, (ang + 180f));
         }
-        bul4.velocity = direction * speed;
+        bul8.velocity = direction * speed;
     }
 
     //sorgt dafuer dass die Kugel bei Beruehrung mit der Wand zerstoert wird

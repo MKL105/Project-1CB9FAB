@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Bullets\Player\bul5controller.cs" />
     <Compile Include="Assets\Scripts\Bullets\Player\bul6controller.cs" />
     <Compile Include="Assets\Scripts\Bullets\Player\bul7controller.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Player\bul8controller.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Cooldown Controll\OverlayController.cs" />
     <Compile Include="Assets\Scripts\Enemie2Con.cs" />

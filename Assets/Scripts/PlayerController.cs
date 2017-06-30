@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet5; //Kugel, die beim Schiessen erzeugt wird
     public GameObject bullet6; //Kugel, die beim Schiessen erzeugt wird
     public GameObject bullet7; //Kugel, die beim Schiessen erzeugt wird
+    public GameObject bullet8; //Kugel, die beim Schiessen erzeugt wird
     [HideInInspector] public float cdmultishot; //Cooldownzeit fuer Multishot
     [HideInInspector] public float cdattack; //Cooldownzeit fuer Attacke
     [HideInInspector] public float cdteleport; //Cooldownzeit fuer Teleport
@@ -252,7 +253,7 @@ public class PlayerController : MonoBehaviour
         if ((Input.GetMouseButtonDown(1)) && (Time.time > nextfirems) && (manacon.AktuelleMana >= 10) && (msunlock == true)) //rechte Maustaste gedrückt + Skill aktiv
         {
             nextfirems = Time.time + cdmultishot;
-            GameObject newbullet = Instantiate(bullet) as GameObject;
+            GameObject newbullet = Instantiate(bullet8) as GameObject;
             newbullet.transform.position = new Vector3(playerpos.x, playerpos.y, playerpos.z);
             GameObject newbullet1 = Instantiate(bullet1) as GameObject;
             newbullet1.transform.position = new Vector3(playerpos.x, playerpos.y, playerpos.z);

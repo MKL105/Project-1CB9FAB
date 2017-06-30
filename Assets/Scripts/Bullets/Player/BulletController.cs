@@ -12,7 +12,7 @@ public class BulletController : MonoBehaviour {
     private void Start()
     {
         bul = GetComponent<Rigidbody2D>();
-        speed = 10;
+        speed = 15;
         this.shooting();
     }
 
@@ -23,6 +23,16 @@ public class BulletController : MonoBehaviour {
         Vector2 mypos = new Vector2(transform.position.x, transform.position.y); //berechnet Vector2 von eigener Position
         Vector2 direction = mouseInWorld - mypos; //berechnet Richtungsvektor
         direction.Normalize(); //gibt Vektor die Länge 1
+        if (direction.x > 0)
+        {
+            float ang = (180f * Mathf.Atan(direction.y / direction.x)) / Mathf.PI;
+            bullet.transform.Rotate(0f, 0f, ang);
+        }
+        else
+        {
+            float ang = (180f * Mathf.Atan(direction.y / direction.x)) / Mathf.PI;
+            bullet.transform.Rotate(0f, 0f, (ang+180f));
+        }
         bul.velocity = direction * speed; //sorgt für Bewegung der Kugel
 	}
 

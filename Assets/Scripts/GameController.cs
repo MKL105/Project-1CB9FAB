@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour
         manacost = 200;
         lifecost = 200;
         wave = 1; // test, nachher wiered auf 1
-        money = 0; //zum testen ändern aber wieder auf 0 zurücksetzen
+        money = 99990; //zum testen ändern aber wieder auf 0 zurücksetzen
         damage = 1;
         damagecost = 25;
         ammocost = 50;

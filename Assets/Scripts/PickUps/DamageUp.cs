@@ -13,6 +13,7 @@ public class DamageUp : MonoBehaviour
     private float aktuellerschaden;
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         playercon = Player.GetComponent<PlayerController>();
         DauerDamageUp = 10f;
         Sr = GetComponent<SpriteRenderer>();

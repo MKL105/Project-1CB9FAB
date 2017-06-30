@@ -12,7 +12,7 @@ public class b1controller : MonoBehaviour {
     private void Start()
     {
         bul1 = GetComponent<Rigidbody2D>();
-        speed = 10;
+        speed = 15;
         this.shooting();
     }
 
@@ -24,6 +24,16 @@ public class b1controller : MonoBehaviour {
         Vector2 direction = mouseInWorld - mypos;
         direction.Normalize();
         direction = Quaternion.Euler(0, 0, 180) * direction; //dreht Bewegungsrichtung um 180°
+        if (direction.x > 0)
+        {
+            float ang = (180f * Mathf.Atan(direction.y / direction.x)) / Mathf.PI;
+            bullet1.transform.Rotate(0f, 0f, ang);
+        }
+        else
+        {
+            float ang = (180f * Mathf.Atan(direction.y / direction.x)) / Mathf.PI;
+            bullet1.transform.Rotate(0f, 0f, (ang + 180f));
+        }
         bul1.velocity = direction * speed;
     }
 
