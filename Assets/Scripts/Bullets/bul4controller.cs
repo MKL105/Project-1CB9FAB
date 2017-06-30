@@ -40,6 +40,13 @@ public class bul4controller : MonoBehaviour {
             {
                 Destroy(gameObject);
             }
+            else
+            {
+                if (other.gameObject.CompareTag("Boss"))
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 }

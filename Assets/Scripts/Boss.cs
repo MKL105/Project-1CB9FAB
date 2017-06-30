@@ -33,7 +33,7 @@ public class Boss : MonoBehaviour {
         speed = 1.5f;
         MaxLeben = gamecon.wave*3f;
         AktuelleLeben = MaxLeben;
-        damage = gamecon.wave*5;
+        damage = 50;
         ddamage = (float)damage;
         cdattack = 1f;
         value = gamecon.wave * 10;

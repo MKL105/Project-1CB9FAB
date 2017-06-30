@@ -40,6 +40,13 @@ public class b1controller : MonoBehaviour {
             {
                 Destroy(gameObject);
             }
+            else
+            {
+                if (other.gameObject.CompareTag("Boss"))
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 }
