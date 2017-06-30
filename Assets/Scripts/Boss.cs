@@ -18,6 +18,10 @@ public class Boss : MonoBehaviour {
     public GameObject healthbar;
     public Health healthcon;
     public GameObject bullet; //Kugel, die beim Schiessen erzeugt wird
+    public GameObject bul1;
+    public GameObject bul2;
+    public GameObject bul3;
+    public GameObject bul4;
     [HideInInspector] public float cdattack; //Cooldownzeit fuer Attacke
     [HideInInspector] public float nextfireatk; //Zeit, wenn die Attacke wieder aufgeladen ist
 
@@ -51,7 +55,7 @@ public class Boss : MonoBehaviour {
         {
             Die(); // falls nein wird Die() ausgeführt
         }
-        shooting();
+        attack();
     }
 
     private void Die()
@@ -78,6 +82,26 @@ public class Boss : MonoBehaviour {
         }
     }
 
+    private void special()
+    {
+        Vector3 bosspos = rb.position; //gibt eigene Position als Vektor aus
+
+        if ((Time.time > nextfireatk))
+        {
+            nextfireatk = Time.time + cdattack;
+            GameObject newbullet = Instantiate(bullet) as GameObject;
+            newbullet.transform.position = new Vector3(bosspos.x, bosspos.y, bosspos.z);
+            GameObject newbullet1 = Instantiate(bul1) as GameObject;
+            newbullet1.transform.position = new Vector3(bosspos.x, bosspos.y, bosspos.z);
+            GameObject newbullet2 = Instantiate(bul2) as GameObject;
+            newbullet2.transform.position = new Vector3(bosspos.x, bosspos.y, bosspos.z);
+            GameObject newbullet3 = Instantiate(bul3) as GameObject;
+            newbullet3.transform.position = new Vector3(bosspos.x, bosspos.y, bosspos.z);
+            GameObject newbullet4 = Instantiate(bul4) as GameObject;
+            newbullet4.transform.position = new Vector3(bosspos.x, bosspos.y, bosspos.z);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet")) // falls ja
@@ -90,6 +114,20 @@ public class Boss : MonoBehaviour {
             {
                 healthcon.DealDamage(this.ddamage);
             }
+        }
+    }
+
+    private void attack()
+    {
+        int num = Random.Range(1, 11);
+
+        if (num == 1)
+        {
+            special();
+        }
+        else
+        {
+            shooting();
         }
     }
 }

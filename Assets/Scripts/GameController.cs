@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour
         manacost = 200;
         lifecost = 200;
         wave = 1; // test, nachher wiered auf 1
-        money = 999990; //zum testen ändern aber wieder auf 0 zurücksetzen
+        money = 0; //zum testen ändern aber wieder auf 0 zurücksetzen
         damage = 1;
         damagecost = 25;
         ammocost = 50;
@@ -138,7 +138,7 @@ public class GameController : MonoBehaviour
     IEnumerator spawnwave()
     {
         newenemies = newenem();
-        if (wave != 3)
+        if (wave != 10)
         {
             for (int i = 0; i < newenemies; i++)
             {
@@ -237,7 +237,7 @@ public class GameController : MonoBehaviour
 
     private int newenem()
     {
-        if (wave !=3)
+        if (wave !=10)
         {
             int c = wave * (wave + 5) / 2;
             return c;

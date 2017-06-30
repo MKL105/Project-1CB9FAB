@@ -79,15 +79,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Boss.cs" />
-    <Compile Include="Assets\Scripts\Bullets\Bossbullet.cs" />
-    <Compile Include="Assets\Scripts\Bullets\BulletController.cs" />
-    <Compile Include="Assets\Scripts\Bullets\b1controller.cs" />
-    <Compile Include="Assets\Scripts\Bullets\bul2controller.cs" />
-    <Compile Include="Assets\Scripts\Bullets\bul3controller.cs" />
-    <Compile Include="Assets\Scripts\Bullets\bul4controller.cs" />
-    <Compile Include="Assets\Scripts\Bullets\bul5controller.cs" />
-    <Compile Include="Assets\Scripts\Bullets\bul6controller.cs" />
-    <Compile Include="Assets\Scripts\Bullets\bul7controller.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Boss\Bossbullet.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Boss\bbullet1.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Boss\bbullet2.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Boss\bbullet3.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Boss\bbullet4.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Player\BulletController.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Player\b1controller.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Player\bul2controller.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Player\bul3controller.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Player\bul4controller.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Player\bul5controller.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Player\bul6controller.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Player\bul7controller.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Cooldown Controll\OverlayController.cs" />
     <Compile Include="Assets\Scripts\Enemie2Con.cs" />
