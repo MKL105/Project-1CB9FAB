@@ -10,12 +10,13 @@ public class EnemieController : MonoBehaviour {
     public GameController gamecon;
     private float speed;
     public Rigidbody2D rb;
-    private float mH; //moveHorizontal Variable
-    private float mV; //moveVertical Variable
     public float AktuelleLeben;
     [HideInInspector] public float MaxLeben;
     public GameObject ammodrop;
     public GameObject staminup;
+    public GameObject instakill;
+    public GameObject damageup;
+    public GameObject maxammo;
     private int value; //wie viel Geld der gegner beim tod gibt
     [HideInInspector] public int damage;
     private float ddamage;
@@ -31,7 +32,7 @@ public class EnemieController : MonoBehaviour {
         healthbar = GameObject.FindGameObjectWithTag("Health");
         healthcon = healthbar.GetComponent<Health>();
         rb = GetComponent<Rigidbody2D>();
-        speed = 2;
+        speed = 2f;
         value = gamecon.wave;
         MaxLeben = gamecon.wave;
         AktuelleLeben = MaxLeben;
@@ -83,8 +84,56 @@ public class EnemieController : MonoBehaviour {
             case 2:
                 if (this.dropitem(5.0f) == true)
                 {
+                    GameObject newmaxammo = Instantiate(maxammo) as GameObject;
+                    newmaxammo.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                    gamecon.money += value;
+                    Destroy(gameObject);
+                    break;
+                }
+                else
+                {
+                    gamecon.money += value;
+                    Destroy(gameObject);
+                    break;
+                }
+
+            case 3:
+                if (this.dropitem(5.0f) == true)
+                {
                     GameObject newstaminup = Instantiate(staminup) as GameObject;
                     newstaminup.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                    gamecon.money += value;
+                    Destroy(gameObject);
+                    break;
+                }
+                else
+                {
+                    gamecon.money += value;
+                    Destroy(gameObject);
+                    break;
+                }
+
+            case 4:
+                if (this.dropitem(5.0f) == true)
+                {
+                    GameObject newdamageup = Instantiate(damageup) as GameObject;
+                    newdamageup.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                    gamecon.money += value;
+                    Destroy(gameObject);
+                    break;
+                }
+                else
+                {
+                    gamecon.money += value;
+                    Destroy(gameObject);
+                    break;
+                }
+
+            case 5:
+                if (this.dropitem(5.0f) == true)
+                {
+                    GameObject newinstakill = Instantiate(instakill) as GameObject;
+                    newinstakill.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
                     gamecon.money += value;
                     Destroy(gameObject);
                     break;
@@ -135,13 +184,34 @@ public class EnemieController : MonoBehaviour {
     private int randitem()
     {
         float chan = Random.Range(0.0f, 100.0f);
-        if (chan < 50.0f)
+        if (chan <= 25f) //Munition 25%
         {
             return 1;
         }
         else
         {
-            return 2;
+            if ((chan > 25f) && (chan <= 37.5)) //Max. Munition 12.5%
+            {
+                return 2;
+            }
+            else
+            {
+                if ((chan > 37.5f) && (chan <= 62.5f)) //Staminup 25%
+                {
+                    return 3;
+                }
+                else
+                {
+                    if ((chan > 62.5f) && (chan <= 87.5f)) // DamageUp 25%
+                    {
+                        return 4;
+                    }
+                    else // Instakill 12.5%
+                    {
+                        return 5;
+                    }
+                }
+            }
         }
     }
 }

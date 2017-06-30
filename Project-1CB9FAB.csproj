@@ -78,6 +78,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Boss.cs" />
+    <Compile Include="Assets\Scripts\Bullets\Bossbullet.cs" />
     <Compile Include="Assets\Scripts\Bullets\BulletController.cs" />
     <Compile Include="Assets\Scripts\Bullets\b1controller.cs" />
     <Compile Include="Assets\Scripts\Bullets\bul2controller.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Assets\Scripts\Mana.cs" />
     <Compile Include="Assets\Scripts\PickUps\DamageUp.cs" />
     <Compile Include="Assets\Scripts\PickUps\Instakill.cs" />
+    <Compile Include="Assets\Scripts\PickUps\MaxAmmo.cs" />
     <Compile Include="Assets\Scripts\PickUps\PickUpAmmoCon.cs" />
     <Compile Include="Assets\Scripts\PickUps\StaminUp.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />

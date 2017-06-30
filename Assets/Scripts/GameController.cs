@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     [HideInInspector] public bool pickupammo;
     public Transform enemy;
     public Transform enemy2;
+    public Transform boss;
     public GameObject player;
     public PlayerController playcon;
     public GameObject manabar;
@@ -27,7 +28,9 @@ public class GameController : MonoBehaviour
     public GameObject spawnpoint3;
     [HideInInspector] public int wave;
     GameObject[] enemiesleft;
+    GameObject[] bossleft;
     [HideInInspector] public int enemleft;
+    [HideInInspector] public int boleft;
     [HideInInspector] public int newenemies;
     private bool waveover;
     [HideInInspector] public int money;
@@ -45,6 +48,8 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int msmanared;
     [HideInInspector] public int tprangecosts;
     [HideInInspector] public int tprangeup;
+    [HideInInspector] public int speedupcost;
+    [HideInInspector] public int spup;
     public GameObject tpupgrades;
     public GameObject msupgrades;
 
@@ -64,6 +69,8 @@ public class GameController : MonoBehaviour
         tpmanareducecosts = 500;
         msmanareducecosts = 150;
         tprangecosts = 400;
+        speedupcost = 500;
+        spup = 1;
         tprangeup = 1;
         ammo = 100;
         maxammo = 200;
@@ -72,8 +79,8 @@ public class GameController : MonoBehaviour
         tpcost = 500;
         manacost = 200;
         lifecost = 200;
-        wave = 1;
-        money = 100000; //zum testen ändern aber wieder auf 0 zurücksetzen
+        wave = 1; // test, nachher wiered auf 1
+        money = 999990; //zum testen ändern aber wieder auf 0 zurücksetzen
         damage = 1;
         damagecost = 25;
         ammocost = 50;
@@ -98,7 +105,10 @@ public class GameController : MonoBehaviour
         }
         enemiesleft = GameObject.FindGameObjectsWithTag("Enemy");
         enemleft = enemiesleft.Length;
-        if(enemleft == 0)
+        bossleft = GameObject.FindGameObjectsWithTag("Boss");
+        boleft = bossleft.Length;
+
+        if ((enemleft == 0) && (boleft == 0))
         {
             waveover = true;
             wave++;
@@ -128,61 +138,72 @@ public class GameController : MonoBehaviour
     IEnumerator spawnwave()
     {
         newenemies = newenem();
-        for (int i = 0; i < newenemies; i++)
+        if (wave != 3)
         {
-            int num = randomspawn();
-            switch (num)
+            for (int i = 0; i < newenemies; i++)
             {
-                case 1:
-                    if (this.randomenemy() == 1)
-                    {
-                        Instantiate(enemy, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
-                        yield return new WaitForSeconds(1.5f);
-                        break;
-                    }
-                    else
-                    {
-                        Instantiate(enemy2, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
-                        yield return new WaitForSeconds(1.5f);
-                        break;
-                    }
-                case 2:
-                    if (this.randomenemy() == 1)
-                    {
-                        Instantiate(enemy, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
-                        yield return new WaitForSeconds(1.5f);
-                        break;
-                    }
-                    else
-                    {
-                        Instantiate(enemy2, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
-                        yield return new WaitForSeconds(1.5f);
-                        break;
-                    }
-                case 3:
-                    if (this.randomenemy() == 1)
-                    {
-                        Instantiate(enemy, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
-                        yield return new WaitForSeconds(1.5f);
-                        break;
-                    }
-                    else
-                    {
-                        Instantiate(enemy2, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
-                        yield return new WaitForSeconds(1.5f);
-                        break;
-                    }
+                int num = randomspawn();
+                switch (num)
+                {
+                    case 1:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                    case 2:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                    case 3:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                }
+
             }
-            
         }
+        else
+        {
+            Instantiate(boss, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
+            yield return new WaitForSeconds(1.5f);
+        }
+            
     }
 
     private void spawning()
     {
         enemiesleft = GameObject.FindGameObjectsWithTag("Enemy");
         enemleft = enemiesleft.Length;
+        bossleft = GameObject.FindGameObjectsWithTag("Boss");
+        boleft = bossleft.Length;
 
-        if ((enemleft == 0) && (waveover == true))
+        if ((enemleft == 0) && (waveover == true) && (boleft == 0))
         {
             StartCoroutine(spawnwave());
         }
@@ -216,8 +237,12 @@ public class GameController : MonoBehaviour
 
     private int newenem()
     {
-        int c = wave * (wave + 5) / 2;
-        return c;
+        if (wave !=3)
+        {
+            int c = wave * (wave + 5) / 2;
+            return c;
+        }
+        return 1;
     }
 
     public void damageup()
@@ -377,6 +402,17 @@ public class GameController : MonoBehaviour
             tprangecosts += 150;
             tprangeup++;
             money -= tprangecosts;
+        }
+    }
+
+    public void speedbuy()
+    {
+        if ((money >= speedupcost) && (spup < 4))
+        {
+            playcon.speed++;
+            speedupcost += 200;
+            spup++;
+            money -= speedupcost;
         }
     }
 }

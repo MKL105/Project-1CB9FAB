@@ -13,6 +13,7 @@ public class Instakill : MonoBehaviour
     private float aktuellerschaden;
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         playercon = Player.GetComponent<PlayerController>();
         DauerInstakill = 10f;
         Sr = GetComponent<SpriteRenderer>();
@@ -24,15 +25,13 @@ public class Instakill : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            aktuellerschaden = playercon.erhoehterdamage;
+            aktuellerschaden = playercon.damage;
             Color uns = Sr.color;
             uns.a = 0;
             Sr.color = uns;
             if (inuse == false)
             {
-
                 StartCoroutine(inst());
-
             }
         }
     }
@@ -40,10 +39,10 @@ public class Instakill : MonoBehaviour
     IEnumerator inst()
     {
         inuse = true;
-        playercon.erhoehterdamage = playercon.erhoehterdamage + 9999999999999999f;
-
+        playercon.damage += 9999999999999999f;
+        Debug.Log("testtest");
         yield return new WaitForSeconds(DauerInstakill);
-        playercon.erhoehterdamage = aktuellerschaden;
+        playercon.damage = aktuellerschaden;
         Destroy(gameObject);
         inuse = false;
     }
