@@ -358,22 +358,16 @@ public class GameController : MonoBehaviour
         {
             case 1:
                 return Random.Range(1, 4);
-                break;
             case 2:
                 return Random.Range(4, 8);
-                break;
             case 3:
                 return Random.Range(8, 10);
-                break;
             case 4:
                 return Random.Range(10, 13);
-                break;
             case 5:
                 return 13;
-                break;
             default:
-                return Random.Range(1, 14);
-                break;
+                return Random.Range(1, 4);
         }
     }
 

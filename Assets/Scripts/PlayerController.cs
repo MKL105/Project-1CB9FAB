@@ -19,6 +19,17 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet6; //Kugel, die beim Schiessen erzeugt wird
     public GameObject bullet7; //Kugel, die beim Schiessen erzeugt wird
     public GameObject bullet8; //Kugel, die beim Schiessen erzeugt wird
+    public GameObject AR1;
+    public GameObject AR2;
+    public GameObject AR3;
+    public GameObject AR4;
+    public GameObject AR5;
+    public GameObject AR6;
+    public GameObject AR7;
+    public GameObject AR8;
+    public GameObject AR9;
+    public GameObject AR10;
+    public GameObject player;
     [HideInInspector] public float cdmultishot; //Cooldownzeit fuer Multishot
     [HideInInspector] public float cdattack; //Cooldownzeit fuer Attacke
     [HideInInspector] public float cdteleport; //Cooldownzeit fuer Teleport
@@ -335,6 +346,88 @@ public class PlayerController : MonoBehaviour
             nextfiretp = Time.time + cdteleport;
             rb.transform.position = new Vector3(tox, toy, toz);
             manacon.DealManaDamage(tpmana);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("TP1"))
+        {
+            player.transform.position = AR6.transform.position;
+            room = 2;
+        }
+        else
+        {
+            if (collision.gameObject.CompareTag("TP2"))
+            {
+                player.transform.position = AR9.transform.position;
+                room = 4;
+            }
+            else
+            {
+                if (collision.gameObject.CompareTag("TP3"))
+                {
+                    player.transform.position = AR7.transform.position;
+                    room = 2;
+                }
+                else
+                {
+                    if (collision.gameObject.CompareTag("TP4"))
+                    {
+                        player.transform.position = AR10.transform.position;
+                        room = 5;
+                    }
+                    else
+                    {
+                        if (collision.gameObject.CompareTag("TP5"))
+                        {
+                            player.transform.position = AR8.transform.position;
+                            room = 3;
+                        }
+                        else
+                        {
+                            if (collision.gameObject.CompareTag("TP6"))
+                            {
+                                player.transform.position = AR1.transform.position;
+                                room = 1;
+                            }
+                            else
+                            {
+                                if (collision.gameObject.CompareTag("TP7"))
+                                {
+                                    player.transform.position = AR3.transform.position;
+                                    room = 1;
+                                }
+                                else
+                                {
+                                    if (collision.gameObject.CompareTag("TP8"))
+                                    {
+                                        player.transform.position = AR5.transform.position;
+                                        room = 1;
+                                    }
+                                    else
+                                    {
+                                        if (collision.gameObject.CompareTag("TP9"))
+                                        {
+                                            player.transform.position = AR2.transform.position;
+                                            room = 1;
+
+                                        }
+                                        else
+                                        {
+                                            if (collision.gameObject.CompareTag("TP10"))
+                                            {
+                                                player.transform.position = AR4.transform.position;
+                                                room = 1;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
