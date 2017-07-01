@@ -15,6 +15,7 @@ public class Mana : MonoBehaviour
         MaxMana = 100.0f;
         AktuelleMana = MaxMana;
         setvalue(); //Errechnet wert der Manabar
+        StartCoroutine(refill());
     }
 
     public void DealManaDamage(float ManaSchaden) // Reduziert verbleibende Mana
@@ -38,5 +39,21 @@ public class Mana : MonoBehaviour
     public void setvalue()
     {
         Manabar.value = ManaErrechnen();
+    }
+
+    IEnumerator refill()
+    {
+        if (AktuelleMana < MaxMana)
+        {
+            yield return new WaitForSeconds(1);
+            AktuelleMana ++;
+            setvalue();
+            StartCoroutine(refill());
+        }
+        else
+        {
+            yield return new WaitForSeconds(1);
+            StartCoroutine(refill());
+        }        
     }
 }

@@ -138,7 +138,7 @@ public class GameController : MonoBehaviour
     IEnumerator spawnwave()
     {
         newenemies = newenem();
-        if (wave != 3)
+        if (wave != 10)
         {
             for (int i = 0; i < newenemies; i++)
             {
@@ -154,9 +154,9 @@ public class GameController : MonoBehaviour
                         }
                         else
                         {
-                            Instantiate(enemy2, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
+                                Instantiate(enemy2, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
                         }
                     case 2:
                         if (this.randomenemy() == 1)
@@ -166,10 +166,10 @@ public class GameController : MonoBehaviour
                             break;
                         }
                         else
-                        {
-                            Instantiate(enemy2, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
+                        { 
+                                Instantiate(enemy2, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
                         }
                     case 3:
                         if (this.randomenemy() == 1)
@@ -180,9 +180,9 @@ public class GameController : MonoBehaviour
                         }
                         else
                         {
-                            Instantiate(enemy2, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
+                                Instantiate(enemy2, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
                         }
                 }
 
@@ -237,7 +237,7 @@ public class GameController : MonoBehaviour
 
     private int newenem()
     {
-        if (wave !=3)
+        if (wave !=10)
         {
             int c = wave * (wave + 5) / 2;
             return c;
@@ -330,14 +330,17 @@ public class GameController : MonoBehaviour
     {
         int num = Random.Range(1, 101);
 
-        if (num <= 7) //Schneller Gegner
-        {
-            return 2;
-        }
-        else //normaler Gegner
-        {
-            return 1;
-        }
+        
+            if (num <= 7) //Schneller Gegner
+            {
+                return 2;
+            }
+            else //normaler Gegner
+            {
+                return 1;
+            }
+        
+       
     }
 
     public void upgrademaxammo()
