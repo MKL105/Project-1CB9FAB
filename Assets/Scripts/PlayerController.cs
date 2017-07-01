@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float msmana;
     [HideInInspector] public float erhoehterdamage;
     [HideInInspector] public int tprange;
+    [HideInInspector] public int room;
 
     //wird beim Initialisieren aufgerufen
     private void Start()
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
         damage = 1.0f;
         tpmana = 25.0f;
         msmana = 10.0f;
+        room = 1;
     }
 
     //wird vor jedem Frame aufgerufen

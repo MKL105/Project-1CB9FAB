@@ -26,6 +26,16 @@ public class GameController : MonoBehaviour
     public GameObject spawnpoint1;
     public GameObject spawnpoint2;
     public GameObject spawnpoint3;
+    public GameObject spawnpoint4;
+    public GameObject spawnpoint5;
+    public GameObject spawnpoint6;
+    public GameObject spawnpoint7;
+    public GameObject spawnpoint8;
+    public GameObject spawnpoint9;
+    public GameObject spawnpoint10;
+    public GameObject spawnpoint11;
+    public GameObject spawnpoint12;
+    public GameObject spawnpointboss;
     [HideInInspector] public int wave;
     GameObject[] enemiesleft;
     GameObject[] bossleft;
@@ -184,13 +194,143 @@ public class GameController : MonoBehaviour
                                 yield return new WaitForSeconds(1.5f);
                                 break;
                         }
+                    case 4:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint4.transform.position, spawnpoint4.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint4.transform.position, spawnpoint4.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                    case 5:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint5.transform.position, spawnpoint5.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint5.transform.position, spawnpoint5.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                    case 6:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint6.transform.position, spawnpoint6.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint6.transform.position, spawnpoint6.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                    case 7:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint7.transform.position, spawnpoint7.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint7.transform.position, spawnpoint7.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                    case 8:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint8.transform.position, spawnpoint8.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint8.transform.position, spawnpoint8.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                    case 9:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint9.transform.position, spawnpoint9.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint9.transform.position, spawnpoint9.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                    case 10:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint10.transform.position, spawnpoint10.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint10.transform.position, spawnpoint10.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                    case 11:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint11.transform.position, spawnpoint11.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint11.transform.position, spawnpoint11.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                    case 12:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpoint12.transform.position, spawnpoint12.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpoint12.transform.position, spawnpoint12.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                    case 13:
+                        if (this.randomenemy() == 1)
+                        {
+                            Instantiate(enemy, spawnpointboss.transform.position, spawnpointboss.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
+                        else
+                        {
+                            Instantiate(enemy2, spawnpointboss.transform.position, spawnpointboss.transform.rotation);
+                            yield return new WaitForSeconds(1.5f);
+                            break;
+                        }
                 }
 
             }
         }
         else
         {
-            Instantiate(boss, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
+            Instantiate(boss, spawnpointboss.transform.position, spawnpointboss.transform.rotation);
             yield return new WaitForSeconds(1.5f);
         }
             
@@ -210,29 +350,31 @@ public class GameController : MonoBehaviour
     }
 
 
-    //berechnet zufaellige x oder y koordinate fuer Gegnerspawnposition
-    //evtl nicht beoetigt wenn fester spawnpunkt
-    private float randompos()
-    {
-        float randx1 = Random.Range(-20.0f, (player.transform.position.x - 0.5f)); //zufaellige x-Koordinate Links oder unten vom Player
-        float randx2 = Random.Range((player.transform.position.x + 0.5f), 20.0f); //zufaellige x-Koordinate rechts oder oben vom Player
-        
-        int randud = Random.Range(1, 2); //Zufallszahl 1 oder 2 -> zum auswaehlen ob randx1 oder randx2
-
-        if (randud == 1)
-        {
-            return randx1;
-        }
-        else
-        {
-            return randx2;
-        }
-    }
-
     private int randomspawn()
     {
-        int spawn = Random.Range(1, 4);
-        return spawn;
+        int room = playcon.room;
+
+        switch(room)
+        {
+            case 1:
+                return Random.Range(1, 4);
+                break;
+            case 2:
+                return Random.Range(4, 8);
+                break;
+            case 3:
+                return Random.Range(8, 10);
+                break;
+            case 4:
+                return Random.Range(10, 13);
+                break;
+            case 5:
+                return 13;
+                break;
+            default:
+                return Random.Range(1, 14);
+                break;
+        }
     }
 
     private int newenem()
