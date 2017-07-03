@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour {
     public float AktuelleLeben;
     public float MaxLeben;
     public Slider Healthbar; // Ist für Optische Anzeige zuständig
+    public GameObject allesandere;
+    public GameObject deathmenu;
+    public GameObject area;
+    public GameController gamecon;
+    public Text deathtext;
 
     private void Start() // setzt zum Beginn die Aktuellen Leben auf Max
     {
         MaxLeben = 100.0f;
         AktuelleLeben = MaxLeben;
         setvalue(); //Errechnet wert der Healthbar
+        deathmenu.gameObject.SetActive(false);
+        gamecon = area.GetComponent<GameController>();
     }
 
     public void DealDamage(float Schaden) // Reduziert verbleibende Leben
@@ -32,7 +38,11 @@ public class Health : MonoBehaviour {
     void Die() //Printet in der Console das kein Leben mehr vorhanden ist soll später den Spieler zerstören und das Spiel beenden
     {
         AktuelleLeben = 0;
-        SceneManager.LoadScene(2);
+        Time.timeScale = 0;
+        gamecon.stopmusic();
+        deathtext.text = "You survived " + (gamecon.wave - 1).ToString() + " waves";
+        deathmenu.gameObject.SetActive(true);
+        allesandere.gameObject.SetActive(false);
     }
 
     public void setvalue()

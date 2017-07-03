@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
     public GameObject spawnpoint12;
     public GameObject spawnpointboss;
     [HideInInspector] public int wave;
+    [HideInInspector] public static int endwave;
     GameObject[] enemiesleft;
     GameObject[] bossleft;
     [HideInInspector] public int enemleft;
@@ -62,6 +63,8 @@ public class GameController : MonoBehaviour
     [HideInInspector] public int spup;
     public GameObject tpupgrades;
     public GameObject msupgrades;
+    public AudioSource music;
+    public AudioSource bossmusic;
 
 
     private void Start()
@@ -90,15 +93,18 @@ public class GameController : MonoBehaviour
         manacost = 200;
         lifecost = 200;
         wave = 1; // test, nachher wiered auf 1
-        money = 99990; //zum testen ändern aber wieder auf 0 zurücksetzen
+        money = 0; //zum testen ändern aber wieder auf 0 zurücksetzen
         damage = 1;
         damagecost = 25;
         ammocost = 50;
         ammoupgradecost = 50;
+        endwave = wave - 1;
         tpupgrades.gameObject.SetActive(false);
         msupgrades.gameObject.SetActive(false);
         newenemies = newenem();
         waveover = true;
+        music.Play();
+        music.loop = true;
         spawning();
     }
 
@@ -117,6 +123,7 @@ public class GameController : MonoBehaviour
         enemleft = enemiesleft.Length;
         bossleft = GameObject.FindGameObjectsWithTag("Boss");
         boleft = bossleft.Length;
+        endwave = wave - 1;
 
         if ((enemleft == 0) && (boleft == 0))
         {
@@ -148,189 +155,193 @@ public class GameController : MonoBehaviour
     IEnumerator spawnwave()
     {
         newenemies = newenem();
-        if (wave != 10)
+        if ((wave != 10))
         {
             for (int i = 0; i < newenemies; i++)
             {
                 int num = randomspawn();
-                switch (num)
-                {
-                    case 1:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
+                bossmusic.Pause();
+                music.mute = false;
+                    switch (num)
+                    {
+                        case 1:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
                                 Instantiate(enemy2, spawnpoint1.transform.position, spawnpoint1.transform.rotation);
                                 yield return new WaitForSeconds(1.5f);
                                 break;
-                        }
-                    case 2:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        { 
+                            }
+                        case 2:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
                                 Instantiate(enemy2, spawnpoint2.transform.position, spawnpoint2.transform.rotation);
                                 yield return new WaitForSeconds(1.5f);
                                 break;
-                        }
-                    case 3:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
+                            }
+                        case 3:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
                                 Instantiate(enemy2, spawnpoint3.transform.position, spawnpoint3.transform.rotation);
                                 yield return new WaitForSeconds(1.5f);
                                 break;
-                        }
-                    case 4:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint4.transform.position, spawnpoint4.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
-                            Instantiate(enemy2, spawnpoint4.transform.position, spawnpoint4.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                    case 5:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint5.transform.position, spawnpoint5.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
-                            Instantiate(enemy2, spawnpoint5.transform.position, spawnpoint5.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                    case 6:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint6.transform.position, spawnpoint6.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
-                            Instantiate(enemy2, spawnpoint6.transform.position, spawnpoint6.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                    case 7:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint7.transform.position, spawnpoint7.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
-                            Instantiate(enemy2, spawnpoint7.transform.position, spawnpoint7.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                    case 8:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint8.transform.position, spawnpoint8.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
-                            Instantiate(enemy2, spawnpoint8.transform.position, spawnpoint8.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                    case 9:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint9.transform.position, spawnpoint9.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
-                            Instantiate(enemy2, spawnpoint9.transform.position, spawnpoint9.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                    case 10:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint10.transform.position, spawnpoint10.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
-                            Instantiate(enemy2, spawnpoint10.transform.position, spawnpoint10.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                    case 11:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint11.transform.position, spawnpoint11.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
-                            Instantiate(enemy2, spawnpoint11.transform.position, spawnpoint11.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                    case 12:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpoint12.transform.position, spawnpoint12.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
-                            Instantiate(enemy2, spawnpoint12.transform.position, spawnpoint12.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                    case 13:
-                        if (this.randomenemy() == 1)
-                        {
-                            Instantiate(enemy, spawnpointboss.transform.position, spawnpointboss.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                        else
-                        {
-                            Instantiate(enemy2, spawnpointboss.transform.position, spawnpointboss.transform.rotation);
-                            yield return new WaitForSeconds(1.5f);
-                            break;
-                        }
-                }
-
+                            }
+                        case 4:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint4.transform.position, spawnpoint4.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
+                                Instantiate(enemy2, spawnpoint4.transform.position, spawnpoint4.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                        case 5:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint5.transform.position, spawnpoint5.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
+                                Instantiate(enemy2, spawnpoint5.transform.position, spawnpoint5.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                        case 6:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint6.transform.position, spawnpoint6.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
+                                Instantiate(enemy2, spawnpoint6.transform.position, spawnpoint6.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                        case 7:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint7.transform.position, spawnpoint7.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
+                                Instantiate(enemy2, spawnpoint7.transform.position, spawnpoint7.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                        case 8:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint8.transform.position, spawnpoint8.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
+                                Instantiate(enemy2, spawnpoint8.transform.position, spawnpoint8.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                        case 9:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint9.transform.position, spawnpoint9.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
+                                Instantiate(enemy2, spawnpoint9.transform.position, spawnpoint9.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                        case 10:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint10.transform.position, spawnpoint10.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
+                                Instantiate(enemy2, spawnpoint10.transform.position, spawnpoint10.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                        case 11:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint11.transform.position, spawnpoint11.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
+                                Instantiate(enemy2, spawnpoint11.transform.position, spawnpoint11.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                        case 12:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpoint12.transform.position, spawnpoint12.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
+                                Instantiate(enemy2, spawnpoint12.transform.position, spawnpoint12.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                        case 13:
+                            if (this.randomenemy() == 1)
+                            {
+                                Instantiate(enemy, spawnpointboss.transform.position, spawnpointboss.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                            else
+                            {
+                                Instantiate(enemy2, spawnpointboss.transform.position, spawnpointboss.transform.rotation);
+                                yield return new WaitForSeconds(1.5f);
+                                break;
+                            }
+                    }
             }
         }
         else
         {
             Instantiate(boss, spawnpointboss.transform.position, spawnpointboss.transform.rotation);
+            music.mute = true;
+            bossmusic.Play();
+            bossmusic.loop = true;
             yield return new WaitForSeconds(1.5f);
         }
             
@@ -348,7 +359,6 @@ public class GameController : MonoBehaviour
             StartCoroutine(spawnwave());
         }
     }
-
 
     private int randomspawn()
     {
@@ -396,6 +406,7 @@ public class GameController : MonoBehaviour
         if (money >= ammocost)
         {
             this.ammo = maxammo;
+            money -= ammocost;
         }
     }
 
@@ -421,7 +432,7 @@ public class GameController : MonoBehaviour
 
     public void tomenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void manabuy()
@@ -553,6 +564,12 @@ public class GameController : MonoBehaviour
             spup++;
             money -= speedupcost;
         }
+    }
+
+    public void stopmusic()
+    {
+        music.Pause();
+        bossmusic.Pause();
     }
 }
 

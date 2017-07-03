@@ -34,9 +34,9 @@ public class StaminUp : MonoBehaviour {
     IEnumerator memes()
     {
         inuse = true;
-        playcon.speed = playcon.speed + 10;
+        playcon.speed += 10;
         yield return new WaitForSeconds(5);
-        playcon.speed = 4;
+        playcon.speed -= 10;
         Destroy(gameObject);
         inuse = false;
     }

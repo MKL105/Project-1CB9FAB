@@ -36,7 +36,7 @@ public class Boss : MonoBehaviour {
         gamecon = area.GetComponent<GameController>();
         rb = GetComponent<Rigidbody2D>();
         speed = 1.5f;
-        MaxLeben = gamecon.wave*3f;
+        MaxLeben = 510;
         AktuelleLeben = MaxLeben;
         damage = 50;
         ddamage = (float)damage;

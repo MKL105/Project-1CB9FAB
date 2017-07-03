@@ -240,9 +240,9 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
         ammocost = gamecon.ammocost;
         ammocosttext.text = "Ammo refill \n Cost: " + ammocost.ToString();
         manacost = gamecon.manacost;
-        manacosttext.text = "Mana +50 \n Cost: " + manacost.ToString();
+        manacosttext.text = "Pieros Arznei \n Cost: " + manacost.ToString();
         lifecost = gamecon.lifecost;
-        lifecosttext.text = "Health +30 \n Cost: " + lifecost.ToString();
+        lifecosttext.text = "Sokolov's Elixir \n Cost: " + lifecost.ToString();
         ammoupgradecost = gamecon.ammoupgradecost;
         ammoupgradetext.text = "Cost: " + ammoupgradecost.ToString();
         mscdr = gamecon.mscdr;
