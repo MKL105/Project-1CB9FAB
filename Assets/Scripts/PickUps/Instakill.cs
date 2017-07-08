@@ -7,16 +7,26 @@ public class Instakill : MonoBehaviour
 
     public GameObject Player;
     public PlayerController playercon;
+    public GameObject area;
+    public GameController gamecon;
     public float DauerInstakill;
     private bool inuse = false;
     private SpriteRenderer Sr;
-    private float aktuellerschaden;
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        area = GameObject.FindGameObjectWithTag("Wall");
+        gamecon = area.GetComponent<GameController>();
         playercon = Player.GetComponent<PlayerController>();
-        DauerInstakill = 10f;
         Sr = GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        if ((inuse == true) && (gamecon.wave == 10))
+        {
+            playercon.damage -= 999999f;
+        }
     }
 
 
@@ -25,7 +35,6 @@ public class Instakill : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            aktuellerschaden = playercon.damage;
             Color uns = Sr.color;
             uns.a = 0;
             Sr.color = uns;
@@ -39,10 +48,9 @@ public class Instakill : MonoBehaviour
     IEnumerator inst()
     {
         inuse = true;
-        playercon.damage += 9999999999999999f;
-        Debug.Log("testtest");
-        yield return new WaitForSeconds(DauerInstakill);
-        playercon.damage = aktuellerschaden;
+        playercon.damage += 999999f;
+        yield return new WaitForSeconds(10);
+        playercon.damage -= 999999f;
         Destroy(gameObject);
         inuse = false;
     }

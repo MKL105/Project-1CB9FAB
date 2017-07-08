@@ -323,7 +323,7 @@ public class OverlayController : MonoBehaviour { //steuert das Overlay fuer das 
             tprangetext.text = "Max. Level";
         }
 
-        if (damage > 9999999999999f)
+        if (damage > 999998f)
         {
             damagetext.text = "Instakill";
         }

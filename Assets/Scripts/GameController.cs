@@ -66,7 +66,6 @@ public class GameController : MonoBehaviour
     public AudioSource music;
     public AudioSource bossmusic;
 
-
     private void Start()
     {
         playcon = player.GetComponent<PlayerController>();
@@ -495,8 +494,9 @@ public class GameController : MonoBehaviour
         if (money >= ammoupgradecost)
         {
             maxammo += 50;
-            ammoupgradecost += 50;
             money -= ammoupgradecost;
+            ammoupgradecost += 50;
+            
         }
     }
 
@@ -505,9 +505,10 @@ public class GameController : MonoBehaviour
         if ((money >= mscdrcost) && (mscdr < 6))
         {
             playcon.cdmultishot -= 1.0f;
+            money -= mscdrcost;
             mscdrcost += 100;
             mscdr++;
-            money -= mscdrcost;
+            
         }
     }
 
@@ -516,9 +517,10 @@ public class GameController : MonoBehaviour
         if ((money >= tpcdrcost) && (tpcdr < 7))
         {
             playcon.cdteleport -= 5.0f;
+            money -= tpcdrcost;
             tpcdrcost += 150;
             tpcdr++;
-            money -= tpcdrcost;
+            
         }
     }
 
@@ -527,9 +529,10 @@ public class GameController : MonoBehaviour
         if ((money >= tpmanareducecosts) && (tpmanared < 7))
         {
             playcon.tpmana -= 2.0f;
+            money -= tpmanareducecosts;
             tpmanareducecosts += 150;
             tpmanared++;
-            money -= tpmanareducecosts;
+            
         }
     }
 
@@ -538,9 +541,10 @@ public class GameController : MonoBehaviour
         if ((money >= msmanareducecosts) && (msmanared < 6))
         {
             playcon.msmana -= 1.0f;
+            money -= msmanareducecosts;
             msmanareducecosts += 100;
             msmanared++;
-            money -= msmanareducecosts;
+            
         }
     }
 
@@ -549,9 +553,10 @@ public class GameController : MonoBehaviour
         if ((money >= tprangecosts) && (tprangeup < 6))
         {
             playcon.tprange++;
+            money -= tprangecosts;
             tprangecosts += 150;
             tprangeup++;
-            money -= tprangecosts;
+            
         }
     }
 
@@ -560,9 +565,9 @@ public class GameController : MonoBehaviour
         if ((money >= speedupcost) && (spup < 4))
         {
             playcon.speed++;
+            money -= speedupcost;
             speedupcost += 200;
             spup++;
-            money -= speedupcost;
         }
     }
 
